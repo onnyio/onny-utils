@@ -1,5 +1,5 @@
 # onny-utils 
-[![Build Status](https://travis-ci.org/onnyio/onny-utils.svg?branch=master)](https://travis-ci.org/onnyio/onny-utils)
+[![Build Status](https://travis-ci.org/onnyio/onny-utils.svg?branch=master)](https://travis-ci.org/onnyio/onny-utils) [![Coverage Status](https://coveralls.io/repos/github/onnyio/onny-utils/badge.svg?branch=master)](https://coveralls.io/github/onnyio/onny-utils?branch=master)
 
 
 A small library of utils for easy maintenance and upkeep for use in Onny.
