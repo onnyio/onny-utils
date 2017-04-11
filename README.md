@@ -1,7 +1,23 @@
 # onny-utils
-A small library of utils for easy maintenance.
+A small library of utils for easy maintenance and upkeep for use in Onny.
 
-# Array
+Mostly based on/wrappers for [lodash](https://github.com/lodash/lodash)
+
+## Installation
+`npm i --save onny-utils`
+
+````javascript
+// load everything
+import onnyUtils from 'onny-utils';
+
+// selective loading
+import { without } from 'onny-utils';
+````
+
+## Why onny-utils?
+We needed a utils library that we have control over that we know will not change from underneath us.
+
+## Array
 
 ### `without(src, ...values)`
 
@@ -35,11 +51,13 @@ Note: Unlike onny-utils.without, this method mutates array. Use onny-utils.remov
 * @param {...*} [values] - Values to remove
 * @return {Array} mutated array
 
-* @example\
-var array = ['a', 'b', 'c', 'a', 'b', 'c'];\
-pull(array, 'a', 'c');\
+Example:
+
+````javascript
+var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+pull(array, 'a', 'c');
 console.log(array); // => ['b', 'b']
- 
+```` 
 
 ### `pullAt(src, ...indexes) `
 
@@ -51,7 +69,7 @@ NOTE - this mutates the array
 * @param {...number|...number[]} indexes - The indexes of elements to remove.
 * @return {array} - Returns the new array of removed elements.
 
-# Object
+## Object
 
 ### `omit(obj, ...path)`
 
