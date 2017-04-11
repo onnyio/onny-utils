@@ -19,21 +19,33 @@ import { forEach } from './collection';
 // Object Helpers
 ///////////////////////////
 
-export const objToArray = (obj, arrayMap) => {
+/**
+ * Convert an Object into an array
+ *
+ * @param {object} obj
+ * @param {function} funcMapToArray - returns each object element formatted to push onto array
+ * @return {Array} - The new Array
+ */
+export const objToArray = (obj, funcMapToArray) => {
   const a = [];
   forEach(obj, (index) => {
-    a.push(arrayMap(index));
+    a.push(funcMapToArray(index));
   });
-
   return a;
 };
 
 
 /**
  * return object minus the omitted parts
- * @param obj
- * @param path
- * @returns {Object}
+ *
+ * The opposite of onny-utils.pick; this method creates an object composed of the
+ * own and inherited enumerable property paths of object that are not omitted.
+ *
+ * Note: This method is considerably slower than onny-utils.pick.
+ *
+ * @param {object} obj - Source object
+ * @param {...string|string[]} path - Paths to omit
+ * @returns {Object} - The New object
  */
 export const omit = (obj, ...path) => (_.omit(obj, ...path));
 
@@ -43,13 +55,15 @@ export const omit = (obj, ...path) => (_.omit(obj, ...path));
  * Subsequent sources overwrite property assignments of previous sources.
  *
  * Note: This method mutates object and is loosely based on Object.assign.
- * @param obj
- * @param sources
+ *
+ * @param {object} destObj - destination object
+ * @param {...Object} sources - Source objects
+ * @return {object} returns mutated object
  */
-export const assign = (obj, ...sources) => (_.assign(obj, ...sources));
+export const assign = (destObj, ...sources) => (_.assign(destObj, ...sources));
 
 /**
- * This method is like _.assign except that it recursively merges own and inherited
+ * This method is like onny-utils.assign except that it recursively merges own and inherited
  * enumerable string keyed properties of source objects into the destination object.
  * Source properties that resolve to undefined are skipped if a destination value exists.
  * Array and plain object properties are merged recursively. Other objects and value
@@ -58,7 +72,33 @@ export const assign = (obj, ...sources) => (_.assign(obj, ...sources));
  *
  * Note: This method mutates object.
  *
- * @param {Object} obj
- * @param {Object} sources
+ * @param {object} destObj - destination object
+ * @param {...Object} sources - Source objects
+ * @return {object} returns mutated object
  */
-export const merge = (obj, ...sources) => (_.merge(obj, ...sources));
+export const merge = (destObj, ...sources) => (_.merge(destObj, ...sources));
+
+/**
+ * Assigns own and inherited enumerable string keyed properties of source objects to
+ * the destination object for all destination properties that resolve to undefined.
+ * Source objects are applied from left to right. Once a property is set, additional
+ * values of the same property are ignored.
+ *
+ * Note: This method mutates object.
+ *
+ * @param {object} destObj - destination object
+ * @param {...Object} sources - Source objects
+ * @return {object} returns mutated object
+ */
+export const defaults = (destObj, ...sources) => (_.defaults(destObj, ...sources));
+
+/**
+ * This method is like onny-utils.defaults except that it recursively assigns default properties.
+ *
+ * Note: This method mutates object.
+ *
+ * @param {object} destObj - destination object
+ * @param {...Object} sources - Source objects
+ * @return {object} returns mutated object
+ */
+export const defaultsDeep = (destObj, ...sources) => (_.defaultsDeep(destObj, ...sources));

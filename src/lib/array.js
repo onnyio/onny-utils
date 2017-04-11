@@ -21,22 +21,25 @@ import _ from 'lodash';
  * Creates an array excluding all given values using
  * SameValueZero for equality comparisons.
  *
- * Note: Unlike _.pull, this method returns a new array.
+ * Note: Unlike onny-utils.pull, this method returns a new array.
  *
- * @param array
- * @param values
+ * @param {Array} src - Source array
+ * @param {...*} [values] - Values to exclude
+ * @return {Array} - new Array
  */
-export const without = (array, ...values) => (_.without(array, ...values));
+export const without = (src, ...values) => (_.without(src, ...values));
 
 
 /**
+ * This method is like onny-utils.find except that it returns the index of the
+ * first element predicate returns truthy for instead of the element itself.
  *
- * @param array
- * @param iteratee
- * @param fromIndex
+ * @param {Array} src - Source array
+ * @param {function} iteratee
+ * @param {number} [fromIndex=0]
  * @return {number} - index of the item, otherwise -1
  */
-export const findIndex = (array, iteratee, fromIndex = 0) => (_.findIndex(array, iteratee,
+export const findIndex = (src, iteratee, fromIndex = 0) => (_.findIndex(src, iteratee,
   fromIndex));
 
 
@@ -44,7 +47,7 @@ export const findIndex = (array, iteratee, fromIndex = 0) => (_.findIndex(array,
  * Removes all given values from array using
  * SameValueZero for equality comparisons.
  *
- * Note: Unlike _.without, this method mutates array. Use _.remove to
+ * Note: Unlike onny-utils.without, this method mutates array. Use onny-utils.remove to
  * remove elements from an array by predicate.
  *
  * @example
@@ -52,18 +55,19 @@ export const findIndex = (array, iteratee, fromIndex = 0) => (_.findIndex(array,
  * pull(array, 'a', 'c');
  * console.log(array); // => ['b', 'b']
  *
- * @param {*[]} array
- * @param {*[]} values to remove
+ * @param {Array} src - Source array
+ * @param {...*} [values] - Values to remove
+ * @return {Array} mutated array
  */
-export const pull = (array, ...values) => (_.pull(array, ...values));
+export const pull = (src, ...values) => (_.pull(src, ...values));
 
 /**
  * Removes elements from array corresponding to indexes and returns an array of removed elements.
  *
  * NOTE - this mutates the array
  *
- * @param {array} array - The array to modify.
- * @param {number|number[]} indexes - The indexes of elements to remove.
+ * @param {array} src - The array to modify.
+ * @param {...number|...number[]} indexes - The indexes of elements to remove.
  * @return {array} - Returns the new array of removed elements.
  */
-export const pullAt = (array, ...indexes) => (_.pullAt(array, ...indexes));
+export const pullAt = (src, ...indexes) => (_.pullAt(src, ...indexes));
