@@ -40,7 +40,7 @@ export const without = (src, ...values) => (_.without(src, ...values));
  * @return {number} - index of the item, otherwise -1
  */
 export const findIndex = (src, iteratee, fromIndex = 0) => (_.findIndex(src, iteratee,
-  fromIndex));
+    fromIndex));
 
 
 /**

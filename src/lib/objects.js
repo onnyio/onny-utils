@@ -78,7 +78,7 @@ export const assign = (destObj, ...sources) => (_.assign(destObj, ...sources));
  */
 export const merge = (destObj, ...sources) => (_.merge(destObj, ...sources));
 
-/**
+ /**
  * Assigns own and inherited enumerable string keyed properties of source objects to
  * the destination object for all destination properties that resolve to undefined.
  * Source objects are applied from left to right. Once a property is set, additional
@@ -90,7 +90,7 @@ export const merge = (destObj, ...sources) => (_.merge(destObj, ...sources));
  * @param {...Object} sources - Source objects
  * @return {object} returns mutated object
  */
-export const defaults = (destObj, ...sources) => (_.defaults(destObj, ...sources));
+ export const defaults = (destObj, ...sources) => (_.defaults(destObj, ...sources));
 
 /**
  * This method is like onny-utils.defaults except that it recursively assigns default properties.
