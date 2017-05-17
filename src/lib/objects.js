@@ -11,94 +11,165 @@
  */
 
 
-import _ from 'lodash';
-import { forEach } from './collection';
+
+var _ = require('lodash');
+var collection = require('./collection');
+
+var forEach = collection.forEach;
 
 
 ///////////////////////////
 // Object Helpers
 ///////////////////////////
 
-/**
- * Convert an Object into an array
- *
- * @param {object} obj
- * @param {function} funcMapToArray - returns each object element formatted to push onto array
- * @return {Array} - The new Array
- */
-export const objToArray = (obj, funcMapToArray) => {
-  const a = [];
-  forEach(obj, (index) => {
-    a.push(funcMapToArray(index));
-  });
-  return a;
+module.exports = {
+
+
+  /**
+   * Convert an Object into an array
+   *
+   * @public
+   * @function
+   * @param {object} obj
+   * @param {function} funcMapToArray - returns each object element formatted to push onto array
+   * @return {Array} - The new Array
+   */
+  objToArray: function (obj, funcMapToArray) {
+    var a = [];
+    forEach(obj, function (index) {
+      a.push(funcMapToArray(index));
+    });
+    return a;
+  },
+
+
+  /**
+   * return object minus the omitted parts
+   *
+   * The opposite of {@link onny-utils.pick} this method creates an object composed of the
+   * own and inherited enumerable property paths of object that are not omitted.
+   *
+   * Note: This method is considerably slower than {@link onny-utils.pick}.
+   *
+   *
+   * @see related - [ _.omit]{@link https://lodash.com/docs/4.17.4#omit}
+   *
+   * @public
+   * @function
+   * @param {object} obj - Source object
+   * @param {...string|string[]} path - Paths to omit
+   * @returns {Object} - The New object
+   */
+  omit: function (obj) {
+    for ( var _len = arguments.length, path = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len;
+          _key++ ) {
+      path[_key - 1] = arguments[_key];
+    }
+
+    return _.omit.apply(_, [obj].concat(path));
+  },
+
+  /**
+   * Assigns own enumerable string keyed properties of source objects to the
+   * destination object. Source objects are applied from left to right.
+   * Subsequent sources overwrite property assignments of previous sources.
+   *
+   * Note: This method mutates object and is loosely based on Object.assign.
+   *
+   *
+   * @see related - [ _.assign]{@link https://lodash.com/docs/4.17.4#assign}
+   *
+   * @public
+   * @function
+   * @param {object} destObj - destination object
+   * @param {...Object} sources - Source objects
+   * @return {object} returns mutated object
+   */
+  assign: function (destObj) {
+    for ( var _len2 = arguments.length, sources = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1;
+          _key2 < _len2; _key2++ ) {
+      sources[_key2 - 1] = arguments[_key2];
+    }
+
+    return _.assign.apply(_, [destObj].concat(sources));
+  },
+
+  /**
+   * This method is like {@link onny-utils.assign} except that it recursively merges own and inherited
+   * enumerable string keyed properties of source objects into the destination object.
+   * Source properties that resolve to undefined are skipped if a destination value exists.
+   * Array and plain object properties are merged recursively. Other objects and value
+   * types are overridden by assignment. Source objects are applied from left to right.
+   * Subsequent sources overwrite property assignments of previous sources.
+   *
+   * Note: This method mutates object.
+   *
+   *
+   * @see related - [ _.merge]{@link https://lodash.com/docs/4.17.4#merge}
+   *
+   * @public
+   * @function
+   * @param {object} destObj - destination object
+   * @param {...Object} sources - Source objects
+   * @return {object} returns mutated object
+   */
+  merge: function (destObj) {
+    for ( var _len3 = arguments.length, sources = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1;
+          _key3 < _len3; _key3++ ) {
+      sources[_key3 - 1] = arguments[_key3];
+    }
+
+    return _.merge.apply(_, [destObj].concat(sources))
+      ;
+  },
+
+  /**
+   * Assigns own and inherited enumerable string keyed properties of source objects to
+   * the destination object for all destination properties that resolve to undefined.
+   * Source objects are applied from left to right. Once a property is set, additional
+   * values of the same property are ignored.
+   *
+   * Note: This method mutates object.
+   *
+   *
+   * @see related - [ _.defaults]{@link https://lodash.com/docs/4.17.4#defaults}
+   *
+   * @public
+   * @function
+   * @param {object} destObj - destination object
+   * @param {...Object} sources - Source objects
+   * @return {object} returns mutated object
+   */
+  defaults: function (destObj) {
+    for ( var _len4 = arguments.length, sources = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1;
+          _key4 < _len4; _key4++ ) {
+      sources[_key4 - 1] = arguments[_key4];
+    }
+
+    return _.defaults.apply(_, [destObj].concat(sources));
+  },
+
+  /**
+   * This method is like {@link onny-utils.defaults} except that it recursively assigns default properties.
+   *
+   * Note: This method mutates object.
+   *
+   * @see related - [ _.defaultsDeep]{@link https://lodash.com/docs/4.17.4#defaultsDeep}
+   *
+   * @public
+   * @function
+   * @param {object} destObj - destination object
+   * @param {...Object} sources - Source objects
+   * @return {object} returns mutated object
+   */
+  defaultsDeep: function (destObj) {
+    for ( var _len5 = arguments.length, sources = Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1;
+          _key5 < _len5; _key5++ ) {
+      sources[_key5 - 1] = arguments[_key5];
+    }
+
+    return _.defaultsDeep(_, [destObj].concat(sources));
+  }
+
 };
 
-
-/**
- * return object minus the omitted parts
- *
- * The opposite of onny-utils.pick; this method creates an object composed of the
- * own and inherited enumerable property paths of object that are not omitted.
- *
- * Note: This method is considerably slower than onny-utils.pick.
- *
- * @param {object} obj - Source object
- * @param {...string|string[]} path - Paths to omit
- * @returns {Object} - The New object
- */
-export const omit = (obj, ...path) => (_.omit(obj, ...path));
-
-/**
- * Assigns own enumerable string keyed properties of source objects to the
- * destination object. Source objects are applied from left to right.
- * Subsequent sources overwrite property assignments of previous sources.
- *
- * Note: This method mutates object and is loosely based on Object.assign.
- *
- * @param {object} destObj - destination object
- * @param {...Object} sources - Source objects
- * @return {object} returns mutated object
- */
-export const assign = (destObj, ...sources) => (_.assign(destObj, ...sources));
-
-/**
- * This method is like onny-utils.assign except that it recursively merges own and inherited
- * enumerable string keyed properties of source objects into the destination object.
- * Source properties that resolve to undefined are skipped if a destination value exists.
- * Array and plain object properties are merged recursively. Other objects and value
- * types are overridden by assignment. Source objects are applied from left to right.
- * Subsequent sources overwrite property assignments of previous sources.
- *
- * Note: This method mutates object.
- *
- * @param {object} destObj - destination object
- * @param {...Object} sources - Source objects
- * @return {object} returns mutated object
- */
-export const merge = (destObj, ...sources) => (_.merge(destObj, ...sources));
-
- /**
- * Assigns own and inherited enumerable string keyed properties of source objects to
- * the destination object for all destination properties that resolve to undefined.
- * Source objects are applied from left to right. Once a property is set, additional
- * values of the same property are ignored.
- *
- * Note: This method mutates object.
- *
- * @param {object} destObj - destination object
- * @param {...Object} sources - Source objects
- * @return {object} returns mutated object
- */
- export const defaults = (destObj, ...sources) => (_.defaults(destObj, ...sources));
-
-/**
- * This method is like onny-utils.defaults except that it recursively assigns default properties.
- *
- * Note: This method mutates object.
- *
- * @param {object} destObj - destination object
- * @param {...Object} sources - Source objects
- * @return {object} returns mutated object
- */
-export const defaultsDeep = (destObj, ...sources) => (_.defaultsDeep(destObj, ...sources));
