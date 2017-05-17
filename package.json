@@ -1,15 +1,17 @@
 {
   "name": "onny-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utils for Onny.io",
-  "main": "./dist/index.js",
+  "main": "./index.js",
   "scripts": {
-    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
-    "prepublish": "npm run build",
-    "lint": "eslint ./src --ext .js --format ./node_modules/eslint-config-onny/eslintFormat",
+    "build_": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "prebuild_": "bash prebuild.sh",
+    "prepublish_": "npm run build",
+    "lint": "eslint ./src --ext .js --format ./ node_modules/eslint-config-onny/eslintFormat",
     "lint-fix": "eslint ./src --ext .js --format ./node_modules/eslint-config-onny/eslintFormat --fix",
-    "test_local": "mocha --require babel-polyfill --compilers js:babel-register",
-    "test": "nyc --require babel-register --require babel-polyfill mocha && nyc report --reporter=text-lcov | coveralls"
+    "test_local": "mocha",
+    "test_": "nyc  mocha && nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc mocha && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",

@@ -10,30 +10,31 @@
  * Last Modified: 2017.4.1
  */
 
+var chai = require('chai');
+var arrayUtils = require('../index')
 
-import chai, { expect } from 'chai';
-import {
-  without,
-  findIndex,
-  pullAt
-} from '../src/lib/array';
+var expect = chai.expect;
+var without = arrayUtils.without;
+var  findIndex = arrayUtils.findIndex;
+  var pullAt = arrayUtils.pullAt;
 
-const test1 = 'test1';
-const test2 = 'test2';
-const test3 = 'test3';
 
-const expectOriginalArray = (testArray) => {
+var test1 = 'test1';
+var test2 = 'test2';
+var test3 = 'test3';
+
+function expectOriginalArray(testArray){
   expect(testArray).to.deep.equal([test1, test2, test3]);
 };
-const expectMutateOriginalArray = (testArray) => {
+function expectMutateOriginalArray(testArray){
   expect(testArray).to.not.deep.equal([test1, test2, test3]);
 };
 
-describe(__filename, () => {
-  let result;
-  let testIndex;
-  let testArray;
-  beforeEach(() => {
+describe(__filename, function(){
+  var result;
+  var testIndex;
+  var testArray;
+  beforeEach(function(){
     result = null;
     testIndex = null;
     testArray = [];
@@ -49,45 +50,45 @@ describe(__filename, () => {
 
   // without
   /////////////////////////
-  describe('without', () => {
-    beforeEach(() => {
+  describe('without', function(){
+    beforeEach(function(){
       result = without(testArray, test2);
     });
-    it('Does NOT mutate source', () => {
+    it('Does NOT mutate source', function(){
       expectOriginalArray(testArray);
     });
-    it('Returns array excluding values', () => {
+    it('Returns array excluding values', function(){
       expect(result).to.deep.equal([test1, test3]);
     });
   }); // without
 
   // findIndex
   /////////////////////////
-  describe('findIndex', () => {
-    beforeEach(() => {
-      result = findIndex(testArray, item => item === test2);
+  describe('findIndex', function(){
+    beforeEach(function(){
+      result = findIndex(testArray, function(item){ return item === test2 });
     });
-    it('Does NOT mutate source', () => {
+    it('Does NOT mutate source', function(){
       expectOriginalArray(testArray);
     });
-    it('Returns the correct index', () => {
+    it('Returns the correct index', function(){
       expect(result).to.equal(1);
     });
 
     testIndex = 1;
-    describe(`findIndex from index ${testIndex}`, () => {
-      beforeEach(() => {
+    describe('findIndex from index ' + testIndex, function(){
+      beforeEach(function(){
         testIndex = 1;
-        result = findIndex(testArray, item => item === test2, testIndex);
+        result = findIndex(testArray, function(item){ return item === test2 }, testIndex);
       });
-      it('Does NOT mutate source', () => {
+      it('Does NOT mutate source', function(){
         expectOriginalArray(testArray);
       });
-      it('Returns the correct index', () => {
+      it('Returns the correct index', function(){
         expect(result).to.equal(1);
       });
-      it(`Does not return items before index ${testIndex}`, () => {
-        result = findIndex(testArray, item => item === test1, testIndex);
+      it('Does not return items before index ' + testIndex, function(){
+        result = findIndex(testArray, function(item){ return item === test1 }, testIndex);
         expect(result).to.equal(-1);
       });
     });
@@ -96,15 +97,15 @@ describe(__filename, () => {
   // pullAt
   /////////////////////////
   testIndex = 1;
-  describe('pullAt', () => {
-    beforeEach(() => {
+  describe('pullAt', function(){
+    beforeEach(function(){
       pullAt(testArray, 1);
     });
-    it('Mutates source', () => {
+    it('Mutates source', function(){
       expectMutateOriginalArray(testArray);
     });
 
-    it('Returns array excluding values', () => {
+    it('Returns array excluding values', function(){
       expect(testArray).to.deep.equal([test1, test3]);
     });
   }); // pullAt
