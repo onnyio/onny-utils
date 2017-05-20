@@ -65,7 +65,7 @@ module.exports = {
    * Removes all given values from array using
    * SameValueZero for equality comparisons.
    *
-   * Note: Unlike {@link onny-utils.without}, this method mutates array. Use onny-utils.remove to
+   * Note: Unlike {@link onny-utils.without}, this method mutates array. Use {@link onny-utils.remove} to
    * remove elements from an array by predicate.
    *
    * @see {@link onny-utils.without}

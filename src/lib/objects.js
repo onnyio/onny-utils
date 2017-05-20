@@ -168,7 +168,7 @@ module.exports = {
       sources[_key5 - 1] = arguments[_key5];
     }
 
-    return _.defaultsDeep(_, [destObj].concat(sources));
+    return _.defaultsDeep.apply(_, [destObj].concat(sources));
   }
 
 };

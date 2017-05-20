@@ -11,30 +11,33 @@
  */
 
 var chai = require('chai');
-var arrayUtils = require('../index')
+var onnyUtils = require('../index');
 
 var expect = chai.expect;
-var without = arrayUtils.without;
-var  findIndex = arrayUtils.findIndex;
-  var pullAt = arrayUtils.pullAt;
+var without = onnyUtils.without;
+var findIndex = onnyUtils.findIndex;
+var pullAt = onnyUtils.pullAt;
+var pull = onnyUtils.pull;
+var differenceWith = onnyUtils.differenceWith;
 
 
 var test1 = 'test1';
 var test2 = 'test2';
 var test3 = 'test3';
+var alt1 = 'alt1';
 
-function expectOriginalArray(testArray){
+function expectOriginalArray(testArray) {
   expect(testArray).to.deep.equal([test1, test2, test3]);
 };
-function expectMutateOriginalArray(testArray){
+function expectMutateOriginalArray(testArray) {
   expect(testArray).to.not.deep.equal([test1, test2, test3]);
 };
 
-describe(__filename, function(){
+describe(__filename, function () {
   var result;
   var testIndex;
   var testArray;
-  beforeEach(function(){
+  beforeEach(function () {
     result = null;
     testIndex = null;
     testArray = [];
@@ -50,64 +53,101 @@ describe(__filename, function(){
 
   // without
   /////////////////////////
-  describe('without', function(){
-    beforeEach(function(){
+  describe('without', function () {
+    beforeEach(function () {
       result = without(testArray, test2);
     });
-    it('Does NOT mutate source', function(){
+    it('Does NOT mutate source', function () {
       expectOriginalArray(testArray);
     });
-    it('Returns array excluding values', function(){
+    it('Returns array excluding values', function () {
       expect(result).to.deep.equal([test1, test3]);
+    });
+    it('Fails gracefully if value is not found', function () {
+      result = without(testArray, alt1);
+      expectOriginalArray(testArray);
+      expect(result).to.deep.equal(testArray);
     });
   }); // without
 
   // findIndex
   /////////////////////////
-  describe('findIndex', function(){
-    beforeEach(function(){
-      result = findIndex(testArray, function(item){ return item === test2 });
+  describe('findIndex', function () {
+    beforeEach(function () {
+      result = findIndex(testArray, function (item) { return item === test2; });
     });
-    it('Does NOT mutate source', function(){
+    it('Does NOT mutate source', function () {
       expectOriginalArray(testArray);
     });
-    it('Returns the correct index', function(){
+    it('Returns the correct index', function () {
       expect(result).to.equal(1);
     });
 
     testIndex = 1;
-    describe('findIndex from index ' + testIndex, function(){
-      beforeEach(function(){
+    describe('findIndex from index ' + testIndex, function () {
+      beforeEach(function () {
         testIndex = 1;
-        result = findIndex(testArray, function(item){ return item === test2 }, testIndex);
+        result = findIndex(testArray, function (item) { return item === test2; }, testIndex);
       });
-      it('Does NOT mutate source', function(){
+      it('Does NOT mutate source', function () {
         expectOriginalArray(testArray);
       });
-      it('Returns the correct index', function(){
+      it('Returns the correct index', function () {
         expect(result).to.equal(1);
       });
-      it('Does not return items before index ' + testIndex, function(){
-        result = findIndex(testArray, function(item){ return item === test1 }, testIndex);
+      it('Does not return items before index ' + testIndex, function () {
+        result = findIndex(testArray, function (item) { return item === test1; }, testIndex);
         expect(result).to.equal(-1);
       });
     });
   }); // findIndex
 
-  // pullAt
+  // pull
   /////////////////////////
   testIndex = 1;
-  describe('pullAt', function(){
-    beforeEach(function(){
-      pullAt(testArray, 1);
+  describe('pull', function () {
+    beforeEach(function () {
+      pull(testArray, test2);
     });
-    it('Mutates source', function(){
+    it('Mutates source', function () {
       expectMutateOriginalArray(testArray);
     });
 
-    it('Returns array excluding values', function(){
+    it('Returns array excluding values', function () {
+      expect(testArray).to.deep.equal([test1, test3]);
+    });
+  }); // pull
+
+  // pullAt
+  /////////////////////////
+  testIndex = 1;
+  describe('pullAt', function () {
+    beforeEach(function () {
+      pullAt(testArray, 1);
+    });
+    it('Mutates source', function () {
+      expectMutateOriginalArray(testArray);
+    });
+
+    it('Returns array excluding values', function () {
       expect(testArray).to.deep.equal([test1, test3]);
     });
   }); // pullAt
+
+  // differenceWith
+  /////////////////////////
+  testIndex = 1;
+  describe('differenceWith', function () {
+    beforeEach(function () {
+      result = differenceWith(testArray, [test2], onnyUtils.isEqual);
+    });
+    it('Does NOT Mutate source', function () {
+      expectOriginalArray(testArray);
+    });
+
+    it('Returns array excluding values', function () {
+      expect(result).to.deep.equal([test1, test3]);
+    });
+  }); // differenceWith
 
 }); // file

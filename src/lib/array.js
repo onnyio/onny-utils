@@ -15,27 +15,27 @@ var _ = require('lodash');
 
 
 module.exports = {
-/**
- * Creates an array excluding all given values using
- * SameValueZero for equality comparisons.
- *
- * Note: Unlike {@link onny-utils.pull}, this method returns a new array.
- *
- * @see {@link onny-utils.pull}
- * @see related - [ _.without]{@link https://lodash.com/docs/4.17.4#without}
- *
- * @public
- * @param {Array} src - Source array
- * @param {...*} [values] - Values to exclude
- * @return {Array} - new Array
- */
-without : function (src) {
-  for ( var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1;
-        _key < _len; _key++ ) {
-    values[_key - 1] = arguments[_key];
-  }
-  return _.without.apply(_, [src].concat(values))
-},
+  /**
+   * Creates an array excluding all given values using
+   * SameValueZero for equality comparisons.
+   *
+   * Note: Unlike {@link onny-utils.pull}, this method returns a new array.
+   *
+   * @see {@link onny-utils.pull}
+   * @see related - [ _.without]{@link https://lodash.com/docs/4.17.4#without}
+   *
+   * @public
+   * @param {Array} src - Source array
+   * @param {...*} [values] - Values to exclude
+   * @return {Array} - new Array
+   */
+  without: function (src) {
+    for ( var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1;
+          _key < _len; _key++ ) {
+      values[_key - 1] = arguments[_key];
+    }
+    return _.without.apply(_, [src].concat(values));
+  },
 
 
   /**
@@ -50,10 +50,10 @@ without : function (src) {
    * @param {number} [fromIndex=0]
    * @return {number} - index of the item, otherwise -1
    */
-  findIndex : function (src, iteratee) {
+  findIndex: function (src, iteratee) {
     var fromIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
-    return _.findIndex(src, iteratee, fromIndex)
+    return _.findIndex(src, iteratee, fromIndex);
   },
 
 
@@ -61,7 +61,7 @@ without : function (src) {
    * Removes all given values from array using
    * SameValueZero for equality comparisons.
    *
-   * Note: Unlike {@link onny-utils.without}, this method mutates array. Use onny-utils.remove to
+   * Note: Unlike {@link onny-utils.without}, this method mutates array. Use {@link onny-utils.remove} to
    * remove elements from an array by predicate.
    *
    * @see {@link onny-utils.without}
@@ -78,13 +78,13 @@ without : function (src) {
    * @return {Array} mutated array
    *
    */
-  pull : function (src) {
+  pull: function (src) {
     for ( var _len2 = arguments.length, values = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1;
           _key2 < _len2; _key2++ ) {
       values[_key2 - 1] = arguments[_key2];
     }
 
-    return _.pull.apply(_, [src].concat(values))
+    return _.pull.apply(_, [src].concat(values));
   },
   /**
    * Removes elements from array corresponding to indexes and returns an array of removed elements.
@@ -98,12 +98,12 @@ without : function (src) {
    * @param {...number|...number[]} indexes - The indexes of elements to remove.
    * @return {*[]} - Returns the new array of removed elements.
    */
-  pullAt : function (src) {
+  pullAt: function (src) {
     for ( var _len3 = arguments.length, indexes = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1;
           _key3 < _len3; _key3++ ) {
       indexes[_key3 - 1] = arguments[_key3];
     }
-    return _.pullAt.apply(_, [src].concat(indexes))
+    return _.pullAt.apply(_, [src].concat(indexes));
   },
 
   /**
@@ -130,10 +130,6 @@ without : function (src) {
   differenceWith: function (array, values, comparator) {
     return _.differenceWith(array, values, comparator);
   }
-}
-
-
-
-
+};
 
 
