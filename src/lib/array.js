@@ -10,64 +10,129 @@
  * Last Modified: 2017.3.29
  */
 
-import _ from 'lodash';
+var _ = require('lodash');
 
 
-///////////////////////////
-// Array Helpers
-///////////////////////////
-
-/**
- * Creates an array excluding all given values using
- * SameValueZero for equality comparisons.
- *
- * Note: Unlike onny-utils.pull, this method returns a new array.
- *
- * @param {Array} src - Source array
- * @param {...*} [values] - Values to exclude
- * @return {Array} - new Array
- */
-export const without = (src, ...values) => (_.without(src, ...values));
-
-
-/**
- * This method is like onny-utils.find except that it returns the index of the
- * first element predicate returns truthy for instead of the element itself.
- *
- * @param {Array} src - Source array
- * @param {function} iteratee
- * @param {number} [fromIndex=0]
- * @return {number} - index of the item, otherwise -1
- */
-export const findIndex = (src, iteratee, fromIndex = 0) => (_.findIndex(src, iteratee,
-    fromIndex));
+module.exports = {
+  /**
+   * Creates an array excluding all given values using
+   * SameValueZero for equality comparisons.
+   *
+   * Note: Unlike {@link onny-utils.pull}, this method returns a new array.
+   *
+   * @see {@link onny-utils.pull}
+   * @see related - [ _.without]{@link https://lodash.com/docs/4.17.4#without}
+   *
+   * @public
+   * @param {Array} src - Source array
+   * @param {...*} [values] - Values to exclude
+   * @return {Array} - new Array
+   */
+  without: function (src) {
+    for ( var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1;
+          _key < _len; _key++ ) {
+      values[_key - 1] = arguments[_key];
+    }
+    return _.without.apply(_, [src].concat(values));
+  },
 
 
-/**
- * Removes all given values from array using
- * SameValueZero for equality comparisons.
- *
- * Note: Unlike onny-utils.without, this method mutates array. Use onny-utils.remove to
- * remove elements from an array by predicate.
- *
- * @example
- * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
- * pull(array, 'a', 'c');
- * console.log(array); // => ['b', 'b']
- *
- * @param {Array} src - Source array
- * @param {...*} [values] - Values to remove
- * @return {Array} mutated array
- */
-export const pull = (src, ...values) => (_.pull(src, ...values));
+  /**
+   * This method is like onny-utils.find except that it returns the index of the
+   * first element predicate returns truthy for instead of the element itself.
+   *
+   * @see related - [ _.findIndex]{@link https://lodash.com/docs/4.17.4#findIndex}
+   *
+   * @public
+   * @param {Array} src - Source array
+   * @param {function} iteratee
+   * @param {number} [fromIndex=0]
+   * @return {number} - index of the item, otherwise -1
+   */
+  findIndex: function (src, iteratee) {
+    var fromIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
-/**
- * Removes elements from array corresponding to indexes and returns an array of removed elements.
- *
- * NOTE - this mutates the array
- *
- * @param {array} src - The array to modify.
- * @param {...number|...number[]} indexes - The indexes of elements to remove.
- * @return {array} - Returns the new array of removed elements.
- */
-export const pullAt = (src, ...indexes) => (_.pullAt(src, ...indexes));
+    return _.findIndex(src, iteratee, fromIndex);
+  },
+
+
+  /**
+   * Removes all given values from array using
+   * SameValueZero for equality comparisons.
+   *
+   * Note: Unlike {@link onny-utils.without}, this method mutates array. Use {@link onny-utils.remove} to
+   * remove elements from an array by predicate.
+   *
+   * @see {@link onny-utils.without}
+   * @see related - [ _.pull]{@link https://lodash.com/docs/4.17.4#pull}
+   *
+   * @example
+   * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+   * pull(array, 'a', 'c');
+   * console.log(array); // => ['b', 'b']
+   *
+   * @public
+   * @param {Array} src - Source array
+   * @param {...*} [values] - Values to remove
+   * @return {Array} mutated array
+   *
+   */
+  pull: function (src) {
+    for ( var _len2 = arguments.length, values = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1;
+          _key2 < _len2; _key2++ ) {
+      values[_key2 - 1] = arguments[_key2];
+    }
+
+    return _.pull.apply(_, [src].concat(values));
+  },
+  /**
+   * Removes elements from array corresponding to indexes and returns an array of removed elements.
+   *
+   * NOTE - this mutates the array
+   *
+   * @see related - [ _.pullAt]{@link https://lodash.com/docs/4.17.4#pullAt}
+   *
+   * @public
+   * @param {*[]} src - The array to modify.
+   * @param {...number|...number[]} indexes - The indexes of elements to remove.
+   * @return {*[]} - Returns the new array of removed elements.
+   */
+  pullAt: function (src) {
+    for ( var _len3 = arguments.length, indexes = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1;
+          _key3 < _len3; _key3++ ) {
+      indexes[_key3 - 1] = arguments[_key3];
+    }
+    return _.pullAt.apply(_, [src].concat(indexes));
+  },
+
+  /**
+   *
+   * This method is like _.difference except that it accepts comparator which is invoked to compare
+   * elements of array to values. The order and references of result values are determined by the
+   * first array. The comparator is invoked with two arguments: (arrVal, othVal).
+   *
+   * Note: Unlike _.pullAllWith, this method returns a new array.
+   *
+   * @example
+   * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+   *
+   * differenceWith(objects, [{ 'x': 1, 'y': 2 }], isEqual);
+   * // => [{ 'x': 2, 'y': 1 }]
+   *
+   * @public
+   * @function
+   * @param {*[]} array - The array to inspect.
+   * @param {*[]} values - The values to exclude.
+   * @param {function} comparator - The comparator invoked per element.
+   * @returns {[]} Returns the new array of filtered values.
+   */
+  differenceWith: function (array, values, comparator) {
+    return _.differenceWith(array, values, comparator);
+  }
+};
+
+
+
+
+
+
