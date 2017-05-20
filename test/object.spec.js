@@ -51,7 +51,7 @@ describe(__filename, function () {
   beforeEach(function () {
     result = null;
     testObj = {};
-    // verify array was cleared
+// verify array was cleared
     expect(testObj).to.deep.equal({});
     testObj = {
       defaultProp1: {
@@ -61,9 +61,10 @@ describe(__filename, function () {
       defaultProp3: defaultProp3
     };
 
-    // verify our array is set up
+// verify our array is set up
     expectOriginalObj(testObj);
-  });
+  })
+  ;
 
   // objToArray
   /////////////////////////
@@ -159,7 +160,8 @@ describe(__filename, function () {
       );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
-      });
+      })
+      ;
 
       it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
@@ -233,7 +235,8 @@ describe(__filename, function () {
       );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
-      });
+      })
+      ;
 
       it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
@@ -242,8 +245,7 @@ describe(__filename, function () {
             defaultProp2: defaultProp2,
             defaultProp3: defaultProp3
           });
-      })
-      ;
+      });
     }); // Replace nested obj with additional property
   }); // merge
 
