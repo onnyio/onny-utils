@@ -1,16 +1,12 @@
 {
   "name": "onny-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Utils for Onny.io",
   "main": "./index.js",
   "scripts": {
-    "build_": "babel src --presets babel-preset-es2015 --out-dir dist",
-    "prebuild_": "bash prebuild.sh",
-    "prepublish_": "npm run build",
     "lint": "eslint ./src --ext .js --format ./ node_modules/eslint-config-onny/eslintFormat",
     "lint-fix": "eslint ./src --ext .js --format ./node_modules/eslint-config-onny/eslintFormat --fix",
     "test_local": "mocha",
-    "test_": "nyc  mocha && nyc report --reporter=text-lcov | coveralls",
     "test": "nyc mocha && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
@@ -34,15 +30,6 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-istanbul": "^4.1.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "coveralls": "^2.13.0",
     "eslint-config-onny": "^1.0.1-0",

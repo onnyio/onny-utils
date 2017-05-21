@@ -49,7 +49,7 @@ module.exports = {
     wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
 
 
-    return _.debounce(_, [func, wait].concat(options))
+    return _.debounce.apply(_, [func, wait].concat(options))
   }
 }
 
