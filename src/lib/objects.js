@@ -29,7 +29,8 @@ module.exports = {
    * Convert an Object into an array
    *
    * @public
-   * @function
+   * @static
+   * @memberOf OnnyUtils
    * @param {object} obj
    * @param {function} funcMapToArray - returns each object element formatted to push onto array
    * @return {Array} - The new Array
@@ -46,16 +47,16 @@ module.exports = {
   /**
    * return object minus the omitted parts
    *
-   * The opposite of {@link onny-utils.pick} this method creates an object composed of the
-   * own and inherited enumerable property paths of object that are not omitted.
+   * The opposite of {@link OnnyUtils.pick} this method creates an object composed of the own and inherited enumerable property paths of object that are not omitted.
    *
-   * Note: This method is considerably slower than {@link onny-utils.pick}.
+   * Note: This method is considerably slower than {@link OnnyUtils.pick}.
    *
    *
    * @see related - [ _.omit]{@link https://lodash.com/docs/4.17.4#omit}
    *
    * @public
-   * @function
+   * @static
+   * @memberOf OnnyUtils
    * @param {object} obj - Source object
    * @param {...string|string[]} path - Paths to omit
    * @returns {Object} - The New object
@@ -70,9 +71,7 @@ module.exports = {
   },
 
   /**
-   * Assigns own enumerable string keyed properties of source objects to the
-   * destination object. Source objects are applied from left to right.
-   * Subsequent sources overwrite property assignments of previous sources.
+   * Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
    *
    * Note: This method mutates object and is loosely based on Object.assign.
    *
@@ -80,7 +79,8 @@ module.exports = {
    * @see related - [ _.assign]{@link https://lodash.com/docs/4.17.4#assign}
    *
    * @public
-   * @function
+   * @static
+   * @memberOf OnnyUtils
    * @param {object} destObj - destination object
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
@@ -95,11 +95,7 @@ module.exports = {
   },
 
   /**
-   * This method is like {@link onny-utils.assign} except that it recursively merges own and inherited
-   * enumerable string keyed properties of source objects into the destination object.
-   * Source properties that resolve to undefined are skipped if a destination value exists.
-   * Array and plain object properties are merged recursively. Other objects and value
-   * types are overridden by assignment. Source objects are applied from left to right.
+   * This method is like {@link OnnyUtils.assign} except that it recursively merges own and inherited enumerable string keyed properties of source objects into the destination object. Source properties that resolve to undefined are skipped if a destination value exists. Array and plain object properties are merged recursively. Other objects and value types are overridden by assignment. Source objects are applied from left to right.
    * Subsequent sources overwrite property assignments of previous sources.
    *
    * Note: This method mutates object.
@@ -108,7 +104,8 @@ module.exports = {
    * @see related - [ _.merge]{@link https://lodash.com/docs/4.17.4#merge}
    *
    * @public
-   * @function
+   * @static
+   * @memberOf OnnyUtils
    * @param {object} destObj - destination object
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
@@ -124,10 +121,7 @@ module.exports = {
   },
 
   /**
-   * Assigns own and inherited enumerable string keyed properties of source objects to
-   * the destination object for all destination properties that resolve to undefined.
-   * Source objects are applied from left to right. Once a property is set, additional
-   * values of the same property are ignored.
+   * Assigns own and inherited enumerable string keyed properties of source objects to the destination object for all destination properties that resolve to undefined. Source objects are applied from left to right. Once a property is set, additional values of the same property are ignored.
    *
    * Note: This method mutates object.
    *
@@ -135,7 +129,8 @@ module.exports = {
    * @see related - [ _.defaults]{@link https://lodash.com/docs/4.17.4#defaults}
    *
    * @public
-   * @function
+   * @static
+   * @memberOf OnnyUtils
    * @param {object} destObj - destination object
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
@@ -150,14 +145,15 @@ module.exports = {
   },
 
   /**
-   * This method is like {@link onny-utils.defaults} except that it recursively assigns default properties.
+   * This method is like {@link OnnyUtils.defaults} except that it recursively assigns default properties.
    *
    * Note: This method mutates object.
    *
    * @see related - [ _.defaultsDeep]{@link https://lodash.com/docs/4.17.4#defaultsDeep}
    *
    * @public
-   * @function
+   * @static
+   * @memberOf OnnyUtils
    * @param {object} destObj - destination object
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
@@ -169,6 +165,36 @@ module.exports = {
     }
 
     return _.defaultsDeep.apply(_, [destObj].concat(sources));
+  },
+
+  /**
+   * Creates an array of the own enumerable string keyed property values of `object`.
+   *
+   * **Note:** Non-object values are coerced to objects.
+   *
+   * @public
+   * @static
+   * @type function
+   * @memberOf OnnyUtils
+   * @param {Object} object The object to query.
+   * @returns {Array} Returns the array of property values.
+   * @example
+   *
+   * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+   *
+   * Foo.prototype.c = 3;
+   *
+   * _.values(new Foo);
+   * // => [1, 2] (iteration order is not guaranteed)
+   *
+   * _.values('hi');
+   * // => ['h', 'i']
+   */
+  values: function (object) {
+    return _.values(object)
   }
 
 };
