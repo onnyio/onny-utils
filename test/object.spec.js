@@ -12,7 +12,7 @@
 
 
 var chai = require('chai');
-var objectUtils = require('../src/lib/objects');
+var objectUtils = require('../index');
 
 var expect = chai.expect;
 
