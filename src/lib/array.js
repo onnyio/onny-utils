@@ -12,19 +12,22 @@
 
 var _ = require('lodash');
 
-
+///////////////////////////
+// Array Helpers
+///////////////////////////
 
 module.exports = {
   /**
-   * Creates an array excluding all given values using
-   * SameValueZero for equality comparisons.
+   * Creates an array excluding all given values using SameValueZero for equality comparisons.
    *
-   * Note: Unlike {@link onny-utils.pull}, this method returns a new array.
+   * Note: Unlike {@link OnnyUtils.pull}, this method returns a new array.
    *
-   * @see {@link onny-utils.pull}
+   * @see {@link OnnyUtils.pull}
    * @see related - [ _.without]{@link https://lodash.com/docs/4.17.4#without}
    *
    * @public
+   * @static
+   * @memberOf OnnyUtils
    * @param {Array} src - Source array
    * @param {...*} [values] - Values to exclude
    * @return {Array} - new Array
@@ -36,15 +39,36 @@ module.exports = {
     }
     return _.without.apply(_, [src].concat(values));
   },
+  /**
+   * Removes all elements from array that predicate returns truthy for and returns an array of the removed elements.
+   * The predicate is invoked with three arguments: (value, index, array).
+   *
+   * Note: Unlike {@link OnnyUtils.filter},this method mutates array. Use {@link OnnyUtils.pull} to pull elements from an array by value.
+   *
+   * @see {@link OnnyUtils.filter}
+   * @see {@link OnnyUtils.pull}
+   * @see related - [ _.remove]{@link https://lodash.com/docs/4.17.4#remove}
+   *
+   * @public
+   * @static
+   * @memberOf OnnyUtils
+   * @param {Array} src - Array to modify
+   * @param {function} predicate
+   * @return {Array} - Returns the new array of removed elements.
+   */
+  remove: function (src, predicate) {
+    return _.remove(src, predicate)
+  },
 
 
   /**
-   * This method is like onny-utils.find except that it returns the index of the
-   * first element predicate returns truthy for instead of the element itself.
+   * This method is like OnnyUtils.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
    *
    * @see related - [ _.findIndex]{@link https://lodash.com/docs/4.17.4#findIndex}
    *
    * @public
+   * @static
+   * @memberOf OnnyUtils
    * @param {Array} src - Source array
    * @param {function} iteratee
    * @param {number} [fromIndex=0]
@@ -58,13 +82,12 @@ module.exports = {
 
 
   /**
-   * Removes all given values from array using
-   * SameValueZero for equality comparisons.
+   * Removes all given values from array using SameValueZero for equality comparisons.
    *
-   * Note: Unlike {@link onny-utils.without}, this method mutates array. Use {@link onny-utils.remove} to
+   * Note: Unlike {@link OnnyUtils.without}, this method mutates array. Use {@link OnnyUtils.remove} to
    * remove elements from an array by predicate.
    *
-   * @see {@link onny-utils.without}
+   * @see {@link OnnyUtils.without}
    * @see related - [ _.pull]{@link https://lodash.com/docs/4.17.4#pull}
    *
    * @example
@@ -73,6 +96,8 @@ module.exports = {
    * console.log(array); // => ['b', 'b']
    *
    * @public
+   * @static
+   * @memberOf OnnyUtils
    * @param {Array} src - Source array
    * @param {...*} [values] - Values to remove
    * @return {Array} mutated array
@@ -94,6 +119,8 @@ module.exports = {
    * @see related - [ _.pullAt]{@link https://lodash.com/docs/4.17.4#pullAt}
    *
    * @public
+   * @static
+   * @memberOf OnnyUtils
    * @param {*[]} src - The array to modify.
    * @param {...number|...number[]} indexes - The indexes of elements to remove.
    * @return {*[]} - Returns the new array of removed elements.
@@ -108,9 +135,7 @@ module.exports = {
 
   /**
    *
-   * This method is like _.difference except that it accepts comparator which is invoked to compare
-   * elements of array to values. The order and references of result values are determined by the
-   * first array. The comparator is invoked with two arguments: (arrVal, othVal).
+   * This method is like _.difference except that it accepts comparator which is invoked to compare elements of array to values. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
    *
    * Note: Unlike _.pullAllWith, this method returns a new array.
    *
@@ -121,7 +146,8 @@ module.exports = {
    * // => [{ 'x': 2, 'y': 1 }]
    *
    * @public
-   * @function
+   * @static
+   * @memberOf OnnyUtils
    * @param {*[]} array - The array to inspect.
    * @param {*[]} values - The values to exclude.
    * @param {function} comparator - The comparator invoked per element.
