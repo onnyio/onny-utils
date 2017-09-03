@@ -17,6 +17,10 @@
 
 var _ = require('lodash');
 
+var forEachRight = require('./forEachRight');
+var reverse = require('./reverse');
+var findLastIndex = require('./findLastIndex');
+
 
 /**
  * @static
@@ -177,7 +181,7 @@ module.exports = {
    * @return {*[]} - the new mapped array
    */
   map: function (collection, interatee) {
-    return _.map(collection, interatee)
+    return _.map(collection, interatee);
   },
 
   /**
@@ -193,7 +197,7 @@ module.exports = {
    * @return {*[]|object}
    */
   forEach: function (collection, iteratee) {
-    return _.forEach(collection, iteratee)
+    return _.forEach(collection, iteratee);
   },
 
   /**
@@ -209,7 +213,7 @@ module.exports = {
    */
   find: function (collection, iteratee) {
     var fromIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    return _.find(collection, iteratee, fromIndex)
+    return _.find(collection, iteratee, fromIndex);
   },
 
   /**
@@ -225,7 +229,7 @@ module.exports = {
    * @param {function} predicate  - function invoked per iteration
    * @return {*[]|object}
    */
-  filter: function (collection, predicate) { return _.filter(collection, predicate) },
+  filter: function (collection, predicate) { return _.filter(collection, predicate); },
 
 
   /**
@@ -241,7 +245,7 @@ module.exports = {
    * @param {*} value -value to check
    * @return {boolean} - true if empty
    */
-  isEmpty: function (value) { return _.isEmpty(value) },
+  isEmpty: function (value) { return _.isEmpty(value); },
 
   /**
    * Checks if predicate returns truthy for any element of collection. Iteration is stopped once predicate returns truthy.
@@ -254,7 +258,7 @@ module.exports = {
    * @param predicate
    * @return {boolean} Returns true if any element passes the predicate check, else false.
    */
-  some: function (collection, predicate) { return _.some(collection, predicate)},
+  some: function (collection, predicate) { return _.some(collection, predicate);},
 
 
   ///////////////////////////
@@ -503,5 +507,9 @@ module.exports = {
    */
   values: function (object) {
     return _.values(object);
-  }
+  },
+
+  forEachRight: forEachRight,
+  reverse: reverse,
+  findLastIndex: findLastIndex
 };

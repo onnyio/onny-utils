@@ -1,13 +1,15 @@
 {
   "name": "onny-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Utils for Onny.io",
   "main": "./index.js",
   "scripts": {
     "lint": "eslint ./src --ext .js --format ./ node_modules/eslint-config-onny/eslintFormat",
     "lint-fix": "eslint ./src --ext .js --format ./node_modules/eslint-config-onny/eslintFormat --fix",
     "test_local": "mocha",
-    "test": "nyc mocha && nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
+    "git pull": "git pull https://github.com/imarotte/onny-utils",
+    "git add": "git add ."
   },
   "repository": {
     "type": "git",
