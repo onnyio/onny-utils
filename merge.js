@@ -2,7 +2,7 @@
  * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
  */
 
-const merge = require('lodash/merge');
+var merge = require('lodash/merge');
 
 module.exports = function (destObj) {
   for ( var _len3 = arguments.length, sources = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1;

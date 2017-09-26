@@ -2,7 +2,7 @@
  * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
  */
 
-const pullAt = require('lodash/pullAt');
+var pullAt = require('lodash/pullAt');
 
 module.exports = function (src) {
   for (var _len3 = arguments.length, indexes = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1;

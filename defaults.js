@@ -2,7 +2,7 @@
  * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
  */
 
-const defaults = require('lodash/defaults');
+var defaults = require('lodash/defaults');
 
 module.exports = function (destObj) {
   for ( var _len4 = arguments.length, sources = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1;

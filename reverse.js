@@ -2,7 +2,7 @@
  * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
  */
 
-const reverse = require('lodash/reverse');
+var reverse = require('lodash/reverse');
 
 /**
  * Reverses array so that the first element becomes the last, the second element becomes the second to last, and so on.

@@ -2,7 +2,7 @@
  * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
  */
 
-const debounce = require('lodash/debounce');
+var debounce = require('lodash/debounce');
 
 module.exports = function (func, wait, options) {
   var _len, _key;

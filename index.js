@@ -10,35 +10,33 @@
  * Last Modified: 2017.4.10
  */
 
-const without = require('./without');
-const remove = require('./remove');
-const findIndex = require('./findIndex');
-const pull = require('./pull');
-const pullAt = require('./pullAt');
-const differenceWith = require('./differenceWith');
-const map = require('./map');
-const find = require('./find');
-const filter = require('./filter');
-const isEmpty = require('./isEmpty');
-const some = require('./some');
-const values = require('./values');
-const clone = require('./clone');
-const cloneDeep = require('./cloneDeep');
-const defaults = require('./defaults');
-const defaultsDeep = require('./defaultsDeep');
-const isEqual = require('./isEqual');
-const omit = require('./omit');
-const assign = require('./assign');
-const merge = require('./merge');
-const objToArray = require('./objToArray');
-const debounce = require('./debounce');
-const eq = require('./eq');
-
-
-const forEach = require('./forEach');
-const forEachRight = require('./forEachRight');
-const reverse = require('./reverse');
-const findLastIndex = require('./findLastIndex');
+var without = require('./without');
+var remove = require('./remove');
+var findIndex = require('./findIndex');
+var pull = require('./pull');
+var pullAt = require('./pullAt');
+var differenceWith = require('./differenceWith');
+var map = require('./map');
+var find = require('./find');
+var filter = require('./filter');
+var isEmpty = require('./isEmpty');
+var some = require('./some');
+var values = require('./values');
+var clone = require('./clone');
+var cloneDeep = require('./cloneDeep');
+var defaults = require('./defaults');
+var defaultsDeep = require('./defaultsDeep');
+var isEqual = require('./isEqual');
+var omit = require('./omit');
+var assign = require('./assign');
+var merge = require('./merge');
+var objToArray = require('./objToArray');
+var debounce = require('./debounce');
+var eq = require('./eq');
+var forEach = require('./forEach');
+var forEachRight = require('./forEachRight');
+var reverse = require('./reverse');
+var findLastIndex = require('./findLastIndex');
 
 
 /**
