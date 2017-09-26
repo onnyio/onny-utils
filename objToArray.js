@@ -2,7 +2,7 @@
  * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
  */
 
-const forEach = require('./forEach');
+var forEach = require('./forEach');
 
 module.exports = function (obj, funcMapToArray) {
   var a = [];

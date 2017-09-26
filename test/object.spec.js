@@ -11,73 +11,75 @@
  */
 
 
-const chai = require('chai');
-const objectUtils = require('../index');
+var chai = require('chai');
+var objectUtils = require('../index');
 
-const expect = chai.expect;
+var expect = chai.expect;
 
-const objToArray = objectUtils.objToArray;
-const omit = objectUtils.omit;
-const assign = objectUtils.assign;
-const merge = objectUtils.merge;
-const defaults = objectUtils.defaults;
-const defaultsDeep = objectUtils.defaultsDeep;
+var objToArray = objectUtils.objToArray;
+var omit = objectUtils.omit;
+var assign = objectUtils.assign;
+var merge = objectUtils.merge;
+var defaults = objectUtils.defaults;
+var defaultsDeep = objectUtils.defaultsDeep;
 
 
 // const defaultProp1 = 'defaultProp1';
-const defaultProp2 = 'defaultProp2';
-const defaultProp3 = 'defaultProp3';
-const nestedProp1 = 'nestedProp1';
-const addProp4 = 'addProp4';
+var defaultProp2 = 'defaultProp2';
+var defaultProp3 = 'defaultProp3';
+var nestedProp1 = 'nestedProp1';
+var addProp4 = 'addProp4';
 
 function expectOriginalObj(testObj) {
   expect(testObj).to.deep.equal({
-    defaultProp1: { nestedProp1 },
-    defaultProp2,
-    defaultProp3
+    defaultProp1: { nestedProp1: nestedProp1 },
+    defaultProp2: defaultProp2,
+    defaultProp3: defaultProp3
   });
 }
 function expectMutateOriginalObj(testObj) {
   expect(testObj).to.not.deep.equal({
-    defaultProp1: { nestedProp1 },
-    defaultProp2,
-    defaultProp3
+    defaultProp1: { nestedProp1: nestedProp1 },
+    defaultProp2: defaultProp2,
+    defaultProp3: defaultProp3
   });
 }
 
-describe(__filename, () => {
-  let result;
-  let testObj;
-  beforeEach(() => {
+describe(__filename, function () {
+  var result;
+  var testObj;
+  beforeEach(function () {
     result = null;
     testObj = {};
-    // verify array was cleared
+// verify array was cleared
     expect(testObj).to.deep.equal({});
     testObj = {
       defaultProp1: {
-        nestedProp1
+        nestedProp1: nestedProp1
       },
-      defaultProp2,
-      defaultProp3
+      defaultProp2: defaultProp2,
+      defaultProp3: defaultProp3
     };
 
-    // verify our array is set up
+// verify our array is set up
     expectOriginalObj(testObj);
   })
   ;
 
   // objToArray
   /////////////////////////
-  describe('objToArray', () => {
-    beforeEach(() => {
-      testObj = { 111111: { id: 'objID' } };
-      result = objToArray(testObj, item => item.id);
-    }
+  describe('objToArray', function () {
+    beforeEach(function () {
+        testObj = { '111111': { id: 'objID' } };
+        result = objToArray(testObj, function (item) {
+          return item.id;
+        });
+      }
     );
-    it('Does NOT mutate source', () => {
-      expect(testObj).to.deep.equal({ 111111: { id: 'objID' } });
+    it('Does NOT mutate source', function () {
+      expect(testObj).to.deep.equal({ '111111': { id: 'objID' } });
     });
-    it('Returns array', () => {
+    it('Returns array', function () {
       expect(result).to.deep
         .equal(['objID']);
     });
@@ -85,88 +87,88 @@ describe(__filename, () => {
 
   // omit
   /////////////////////////
-  describe('omit', () => {
-    beforeEach(() => {
-      result = omit(testObj, defaultProp2);
-    }
+  describe('omit', function () {
+    beforeEach(function () {
+        result = omit(testObj, defaultProp2);
+      }
     );
-    it('Does NOT mutate source', () => {
+    it('Does NOT mutate source', function () {
       expectOriginalObj(testObj);
     });
-    it('Returns obj excluding values', () => {
+    it('Returns obj excluding values', function () {
       expect(result).to.deep
-        .equal({ defaultProp1: { nestedProp1 }, defaultProp3 });
+        .equal({ defaultProp1: { nestedProp1: nestedProp1 }, defaultProp3: defaultProp3 });
     });
   }); // omit
 
 
   // assign
   /////////////////////////
-  describe('assign', () => {
-    describe('No additional sources', () => {
-      beforeEach(() => {
-        result = assign(testObj);
-      });
-      it('Does NOT mutate source obj', () => {
-        expectOriginalObj(testObj);
-      });
-      it('returns the source obj', () => {
-        expect(testObj).to.equal(result);
-      });
-    }
-    ); // assign No additional sources
-    describe('Add additional properties', () => {
-      beforeEach(() => {
-        result = assign(testObj, { addProp4 });
+  describe('assign', function () {
+    describe('No additional sources', function () {
+        beforeEach(function () {
+          result = assign(testObj);
+        });
+        it('Does NOT mutate source obj', function () {
+          expectOriginalObj(testObj);
+        });
+        it('returns the source obj', function () {
+          expect(testObj).to.equal(result);
+        });
       }
+    ); // assign No additional sources
+    describe('Add additional properties', function () {
+      beforeEach(function () {
+          result = assign(testObj, { addProp4: addProp4 });
+        }
       );
-      it('Mutates source obj', () => {
+      it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
       });
-      it('Adds the additional properties', () => {
+      it('Adds the additional properties', function () {
         expect(testObj).to.deep
           .equal({
-            defaultProp1: { nestedProp1 },
-            defaultProp2,
-            defaultProp3,
-            addProp4
+            defaultProp1: { nestedProp1: nestedProp1 },
+            defaultProp2: defaultProp2,
+            defaultProp3: defaultProp3,
+            addProp4: addProp4
           });
       });
     }); // assign Add additional properties
-    describe('Replace with additional properties', () => {
-      beforeEach(() => {
-        result = assign(testObj, { defaultProp3: addProp4 });
-      }
+    describe('Replace with additional properties', function () {
+      beforeEach(function () {
+          result = assign(testObj, { defaultProp3: addProp4 });
+        }
       );
-      it('Mutates source obj', () => {
+      it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
       });
-      it('Replaces existing prop with the additional property', () => {
+      it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
           .equal({
-            defaultProp1: { nestedProp1 },
-            defaultProp2,
+            defaultProp1: { nestedProp1: nestedProp1 },
+            defaultProp2: defaultProp2,
             defaultProp3: addProp4
           });
       });
     }); // assign Replace with additional properties
 
-    describe('Replace nested obj with additional property', () => {
-      beforeEach(() => {
-        result = assign(testObj, { defaultProp1: { addProp4 } });
-      }
+    describe('Replace nested obj with additional property', function () {
+      beforeEach(function () {
+          result = assign(testObj, { defaultProp1: { addProp4: addProp4 } });
+        }
       );
-      it('Mutates source obj', () => {
+      it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
       })
       ;
 
-      it('Replaces existing prop with the additional property', () => {
+      it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
           .equal({
-            defaultProp1: { addProp4 },
-            defaultProp2,
-            defaultProp3
+            defaultProp1: { addProp4: addProp4 },
+            defaultProp2: defaultProp2,
+            defaultProp3: defaultProp3
           });
       });
     }); // Replace nested obj with additional property
@@ -175,73 +177,73 @@ describe(__filename, () => {
 
   // merge
   /////////////////////////
-  describe('merge', () => {
-    describe('No additional sources', () => {
-      beforeEach(() => {
-        result = merge(testObj);
-      });
-      it('Does NOT mutate source obj', () => {
-        expectOriginalObj(testObj);
-      });
-      it('returns the source obj', () => {
-        expect(testObj).to.equal(result);
-      });
-    }
-    ); // merge No additional sources
-    describe('Add additional properties', () => {
-      beforeEach(() => {
-        result = merge(testObj, { addProp4 });
+  describe('merge', function () {
+    describe('No additional sources', function () {
+        beforeEach(function () {
+          result = merge(testObj);
+        });
+        it('Does NOT mutate source obj', function () {
+          expectOriginalObj(testObj);
+        });
+        it('returns the source obj', function () {
+          expect(testObj).to.equal(result);
+        });
       }
+    ); // merge No additional sources
+    describe('Add additional properties', function () {
+      beforeEach(function () {
+          result = merge(testObj, { addProp4: addProp4 });
+        }
       );
-      it('Mutates source obj', () => {
+      it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
       });
-      it('Adds the additional properties', () => {
+      it('Adds the additional properties', function () {
         expect(testObj).to.deep
           .equal({
-            defaultProp1: { nestedProp1 },
-            defaultProp2,
-            defaultProp3,
-            addProp4
+            defaultProp1: { nestedProp1: nestedProp1 },
+            defaultProp2: defaultProp2,
+            defaultProp3: defaultProp3,
+            addProp4: addProp4
           });
       });
     }); // merge Add additional properties
-    describe('Merge with additional properties', () => {
-      beforeEach(() => {
-        result = merge(testObj, { defaultProp3: addProp4 });
-      }
+    describe('Merge with additional properties', function () {
+      beforeEach(function () {
+          result = merge(testObj, { defaultProp3: addProp4 });
+        }
       )
       ;
-      it('Mutates source obj', () => {
+      it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
       })
       ;
-      it('Replaces existing prop with the additional property', () => {
+      it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
           .equal({
-            defaultProp1: { nestedProp1 },
-            defaultProp2,
+            defaultProp1: { nestedProp1: nestedProp1 },
+            defaultProp2: defaultProp2,
             defaultProp3: addProp4
           });
       });
     }); // merge Replace with additional properties
 
-    describe('merge nested obj with additional property', () => {
-      beforeEach(() => {
-        result = merge(testObj, { defaultProp1: { addProp4 } });
-      }
+    describe('merge nested obj with additional property', function () {
+      beforeEach(function () {
+          result = merge(testObj, { defaultProp1: { addProp4: addProp4 } });
+        }
       );
-      it('Mutates source obj', () => {
+      it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
       })
       ;
 
-      it('Replaces existing prop with the additional property', () => {
+      it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
           .equal({
-            defaultProp1: { nestedProp1, addProp4 },
-            defaultProp2,
-            defaultProp3
+            defaultProp1: { nestedProp1: nestedProp1, addProp4: addProp4 },
+            defaultProp2: defaultProp2,
+            defaultProp3: defaultProp3
           });
       });
     }); // Replace nested obj with additional property
@@ -250,32 +252,32 @@ describe(__filename, () => {
 
   // defaults
   /////////////////////////
-  describe('defaults', () => {
-    beforeEach(() => {
-      result = defaults(testObj, { addProp4 });
+  describe('defaults', function () {
+    beforeEach(function () {
+      result = defaults(testObj, { addProp4: addProp4 });
     });
 
-    it('Mutates source obj', () => {
+    it('Mutates source obj', function () {
       expectMutateOriginalObj(testObj);
     });
 
-    it('sets addProp4 correctly', () => {
+    it('sets addProp4 correctly', function () {
       expect(result).to.deep.equal({
-        defaultProp1: { nestedProp1 },
-        defaultProp2,
-        defaultProp3,
-        addProp4
-      }
+          defaultProp1: { nestedProp1: nestedProp1 },
+          defaultProp2: defaultProp2,
+          defaultProp3: defaultProp3,
+          addProp4: addProp4
+        }
       );
     });
-    it('only sets addProp4 once', () => {
-      result = defaults(testObj, { addProp4: 'test' });
+    it('only sets addProp4 once', function () {
+      result = defaults(testObj, { addProp4: "test" });
       expect(result).to.deep.equal({
-        defaultProp1: { nestedProp1 },
-        defaultProp2,
-        defaultProp3,
-        addProp4
-      }
+          defaultProp1: { nestedProp1: nestedProp1 },
+          defaultProp2: defaultProp2,
+          defaultProp3: defaultProp3,
+          addProp4: addProp4
+        }
       );
     });
   }); // defaults
@@ -283,32 +285,33 @@ describe(__filename, () => {
 
   // defaultsDeep
   /////////////////////////
-  describe('defaultsDeep', () => {
-    beforeEach(() => {
-      result = defaultsDeep(testObj, { defaultProp1: { addProp4 } });
+  describe('defaultsDeep', function () {
+    beforeEach(function () {
+      result = defaultsDeep(testObj, { defaultProp1: { addProp4: addProp4 } });
     });
 
-    it('Mutates source obj', () => {
+    it('Mutates source obj', function () {
       expectMutateOriginalObj(testObj);
     });
 
-    it('sets addProp4 correctly', () => {
+    it('sets addProp4 correctly', function () {
       expect(result).to.deep.equal({
-        defaultProp1: { nestedProp1, addProp4 },
-        defaultProp2,
-        defaultProp3
-      }
+          defaultProp1: { nestedProp1: nestedProp1, addProp4: addProp4 },
+          defaultProp2: defaultProp2,
+          defaultProp3: defaultProp3
+        }
       );
     });
-    it('only sets addProp4 once', () => {
-      result = defaultsDeep(testObj, { defaultProp1: { addProp4: 'test' } });
+    it('only sets addProp4 once', function () {
+      result = defaultsDeep(testObj, { defaultProp1: { addProp4: "test" } });
       expect(result).to.deep.equal({
-        defaultProp1: { nestedProp1, addProp4 },
-        defaultProp2,
-        defaultProp3
-      }
+          defaultProp1: { nestedProp1: nestedProp1, addProp4: addProp4 },
+          defaultProp2: defaultProp2,
+          defaultProp3: defaultProp3
+        }
       );
     });
   }); // defaultsDeep
+
 })
 ; // file

@@ -3,7 +3,7 @@
  */
 
 
-const forEachRight = require('lodash/forEachRight');
+var forEachRight = require('lodash/forEachRight');
 
 /**
  * @module forEachRight
