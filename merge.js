@@ -1,0 +1,15 @@
+/**
+ * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
+ */
+
+const merge = require('lodash/merge');
+
+module.exports = function (destObj) {
+  for ( var _len3 = arguments.length, sources = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1;
+        _key3 < _len3; _key3++ ) {
+    sources[_key3 - 1] = arguments[_key3];
+  }
+
+  return merge.apply(merge, [destObj].concat(sources))
+    ;
+}

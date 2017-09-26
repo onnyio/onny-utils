@@ -2,7 +2,7 @@
  * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
  */
 
-var findLastIndex = require('lodash/findLastIndex');
+const findLastIndex = require('lodash/findLastIndex');
 
 /**
  *
