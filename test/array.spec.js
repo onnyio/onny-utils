@@ -19,6 +19,8 @@ var findIndex = onnyUtils.findIndex;
 var pullAt = onnyUtils.pullAt;
 var pull = onnyUtils.pull;
 var differenceWith = onnyUtils.differenceWith;
+var uniq = onnyUtils.uniq;
+var intersectionWith = onnyUtils.intersectionWith;
 
 
 var test1 = 'test1';
@@ -29,6 +31,7 @@ var alt1 = 'alt1';
 function expectOriginalArray(testArray) {
   expect(testArray).to.deep.equal([test1, test2, test3]);
 };
+
 function expectMutateOriginalArray(testArray) {
   expect(testArray).to.not.deep.equal([test1, test2, test3]);
 };
@@ -149,5 +152,28 @@ describe(__filename, function () {
       expect(result).to.deep.equal([test1, test3]);
     });
   }); // differenceWith
+
+
+  // uniq
+  /////////////////////////
+  describe('uniq', function () {
+    it('returns array of unique only', function () {
+      result = uniq([2, 1, 2]);
+      expect(result).to.deep.equal([2, 1]);
+    });
+  }); // uniq
+
+
+  // intersectionWith
+  /////////////////////////
+  describe('intersectionWith', function () {
+    it('returns array of unique only', function () {
+      var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+      var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+
+      result = intersectionWith(objects, others, onnyUtils.isEqual);
+      expect(result).to.deep.equal([{ 'x': 1, 'y': 2 }]);
+    });
+  }); // intersectionWith
 
 }); // file

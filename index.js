@@ -37,6 +37,9 @@ var forEach = require('./forEach');
 var forEachRight = require('./forEachRight');
 var reverse = require('./reverse');
 var findLastIndex = require('./findLastIndex');
+var intersectionWith = require('./intersectionWith');
+var uniq = require('./uniq');
+var size = require('./size');
 
 
 /**
@@ -439,5 +442,8 @@ module.exports = {
 
   forEachRight: forEachRight,
   reverse: reverse,
-  findLastIndex: findLastIndex
+  findLastIndex: findLastIndex,
+  intersectionWith: intersectionWith,
+  uniq: uniq,
+  size: size
 };
