@@ -6,7 +6,8 @@
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "es6": false
   },
   "rules": {
     "no-underscore-dangle": ["error", { "enforceInMethodNames": true }]
