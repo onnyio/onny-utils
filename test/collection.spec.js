@@ -10,11 +10,13 @@
  * Last Modified: 2017.4.1
  */
 
-var chai = require('chai');
+var chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
 var onnyUtils = require('../index');
 
 var expect = chai.expect;
 var size = onnyUtils.size;
+var sampleSize = onnyUtils.sampleSize;
+var uniq = onnyUtils.uniq;
 
 
 var test1 = 'test1';
@@ -48,19 +50,19 @@ describe(__filename, function () {
     expectOriginalArray(testArray);
   });
 
-  // without
+  // size
   /////////////////////////
   describe('size', function () {
     it('size of array', function () {
-      result = size([1,2,3,4]);
+      result = size([1, 2, 3, 4]);
       expect(result).to.equal(4);
     });
     it('size of object', function () {
       result = size({
-        one:1,
-        two:2,
-        three:3,
-        four:4
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4
       });
       expect(result).to.equal(4);
     });
@@ -69,5 +71,20 @@ describe(__filename, function () {
       expect(result).to.equal(11);
     });
   }); // size
+
+
+  // sampleSize
+  ////////////////////////////
+  describe('sampleSize', function () {
+    it('array', function () {
+      var n = 9;
+      // run through it a bunch to ensure it actually gives unique results
+      for ( var i = 0; i < 100; i++ ) {
+        result = sampleSize([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], n);
+        result = uniq(result);
+        expect(result.length).to.equal(n);
+      }
+    });
+  });
 
 }); // file

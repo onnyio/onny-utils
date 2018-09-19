@@ -10,6 +10,11 @@
     "es6": false
   },
   "rules": {
-    "no-underscore-dangle": ["error", { "enforceInMethodNames": true }]
+    "no-underscore-dangle": 0,
+    // not available in ES5
+    "prefer-arrow-callback": 0,
+    "no-var": 0,
+    "object-shorthand": 0,
+    "func-names": 0
   }
 }
