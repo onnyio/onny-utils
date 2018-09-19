@@ -10,7 +10,7 @@
  * Last Modified: 2017.4.1
  */
 
-var chai = require('chai');
+var chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
 var onnyUtils = require('../index');
 
 var expect = chai.expect;

@@ -40,6 +40,7 @@ var findLastIndex = require('./findLastIndex');
 var intersectionWith = require('./intersectionWith');
 var uniq = require('./uniq');
 var size = require('./size');
+var sampleSize = require('./sampleSize');
 
 
 /**
@@ -161,6 +162,16 @@ module.exports = {
   ///////////////////////////
   // Collection Helpers
   ///////////////////////////
+
+  /**
+   *
+   * @see  related - [_.sampleSize]{@link https://lodash.com/docs/4.17.10#sampleSize}
+   *
+   * @param {Array|Object} collection - collection to sample
+   * @param {number} [n=1] - number of elements to sample
+   * @return {Array} - Random elements
+   */
+  sampleSize: sampleSize,
 
 
   /**
