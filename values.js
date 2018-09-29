@@ -6,4 +6,4 @@ var values = require('lodash/values');
 
 module.exports = function (object) {
   return values(object);
-}
+};

@@ -22,23 +22,20 @@ var uniq = onnyUtils.uniq;
 var test1 = 'test1';
 var test2 = 'test2';
 var test3 = 'test3';
-var alt1 = 'alt1';
 
 function expectOriginalArray(testArray) {
   expect(testArray).to.deep.equal([test1, test2, test3]);
-};
+}
 
-function expectMutateOriginalArray(testArray) {
-  expect(testArray).to.not.deep.equal([test1, test2, test3]);
-};
+// function expectMutateOriginalArray(testArray) {
+//   expect(testArray).to.not.deep.equal([test1, test2, test3]);
+// }
 
 describe(__filename, function () {
   var result;
-  var testIndex;
   var testArray;
   beforeEach(function () {
     result = null;
-    testIndex = null;
     testArray = [];
     // verify array was cleared
     expect(testArray.length).to.equal(0);
@@ -78,13 +75,13 @@ describe(__filename, function () {
   describe('sampleSize', function () {
     it('array', function () {
       var n = 9;
+      var i;
       // run through it a bunch to ensure it actually gives unique results
-      for ( var i = 0; i < 100; i++ ) {
+      for (i = 0; i < 100; i += 1) {
         result = sampleSize([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], n);
         result = uniq(result);
         expect(result.length).to.equal(n);
       }
     });
   });
-
 }); // file

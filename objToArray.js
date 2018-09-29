@@ -10,4 +10,4 @@ module.exports = function (obj, funcMapToArray) {
     a.push(funcMapToArray(index));
   });
   return a;
-}
+};

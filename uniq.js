@@ -4,4 +4,4 @@
 
 var uniq = require('lodash/uniq');
 
-module.exports = function (array) { return uniq(array) };
+module.exports = function (array) { return uniq(array); };

@@ -6,4 +6,4 @@ var forEach = require('lodash/forEach');
 
 module.exports = function (collection, iteratee) {
   return forEach(collection, iteratee);
-}
+};

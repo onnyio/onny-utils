@@ -51,7 +51,7 @@ describe(__filename, function () {
   beforeEach(function () {
     result = null;
     testObj = {};
-// verify array was cleared
+    // verify array was cleared
     expect(testObj).to.deep.equal({});
     testObj = {
       defaultProp1: {
@@ -61,23 +61,22 @@ describe(__filename, function () {
       defaultProp3: defaultProp3
     };
 
-// verify our array is set up
+    // verify our array is set up
     expectOriginalObj(testObj);
-  })
-  ;
+  });
 
   // objToArray
   /////////////////////////
   describe('objToArray', function () {
     beforeEach(function () {
-        testObj = { '111111': { id: 'objID' } };
-        result = objToArray(testObj, function (item) {
-          return item.id;
-        });
-      }
+      testObj = { 111111: { id: 'objID' } };
+      result = objToArray(testObj, function (item) {
+        return item.id;
+      });
+    }
     );
     it('Does NOT mutate source', function () {
-      expect(testObj).to.deep.equal({ '111111': { id: 'objID' } });
+      expect(testObj).to.deep.equal({ 111111: { id: 'objID' } });
     });
     it('Returns array', function () {
       expect(result).to.deep
@@ -89,8 +88,8 @@ describe(__filename, function () {
   /////////////////////////
   describe('omit', function () {
     beforeEach(function () {
-        result = omit(testObj, defaultProp2);
-      }
+      result = omit(testObj, defaultProp2);
+    }
     );
     it('Does NOT mutate source', function () {
       expectOriginalObj(testObj);
@@ -106,21 +105,21 @@ describe(__filename, function () {
   /////////////////////////
   describe('assign', function () {
     describe('No additional sources', function () {
-        beforeEach(function () {
-          result = assign(testObj);
-        });
-        it('Does NOT mutate source obj', function () {
-          expectOriginalObj(testObj);
-        });
-        it('returns the source obj', function () {
-          expect(testObj).to.equal(result);
-        });
-      }
+      beforeEach(function () {
+        result = assign(testObj);
+      });
+      it('Does NOT mutate source obj', function () {
+        expectOriginalObj(testObj);
+      });
+      it('returns the source obj', function () {
+        expect(testObj).to.equal(result);
+      });
+    }
     ); // assign No additional sources
     describe('Add additional properties', function () {
       beforeEach(function () {
-          result = assign(testObj, { addProp4: addProp4 });
-        }
+        result = assign(testObj, { addProp4: addProp4 });
+      }
       );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
@@ -137,8 +136,8 @@ describe(__filename, function () {
     }); // assign Add additional properties
     describe('Replace with additional properties', function () {
       beforeEach(function () {
-          result = assign(testObj, { defaultProp3: addProp4 });
-        }
+        result = assign(testObj, { defaultProp3: addProp4 });
+      }
       );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
@@ -155,14 +154,12 @@ describe(__filename, function () {
 
     describe('Replace nested obj with additional property', function () {
       beforeEach(function () {
-          result = assign(testObj, { defaultProp1: { addProp4: addProp4 } });
-        }
+        result = assign(testObj, { defaultProp1: { addProp4: addProp4 } });
+      }
       );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
-      })
-      ;
-
+      });
       it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
           .equal({
@@ -179,21 +176,21 @@ describe(__filename, function () {
   /////////////////////////
   describe('merge', function () {
     describe('No additional sources', function () {
-        beforeEach(function () {
-          result = merge(testObj);
-        });
-        it('Does NOT mutate source obj', function () {
-          expectOriginalObj(testObj);
-        });
-        it('returns the source obj', function () {
-          expect(testObj).to.equal(result);
-        });
-      }
+      beforeEach(function () {
+        result = merge(testObj);
+      });
+      it('Does NOT mutate source obj', function () {
+        expectOriginalObj(testObj);
+      });
+      it('returns the source obj', function () {
+        expect(testObj).to.equal(result);
+      });
+    }
     ); // merge No additional sources
     describe('Add additional properties', function () {
       beforeEach(function () {
-          result = merge(testObj, { addProp4: addProp4 });
-        }
+        result = merge(testObj, { addProp4: addProp4 });
+      }
       );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
@@ -210,14 +207,12 @@ describe(__filename, function () {
     }); // merge Add additional properties
     describe('Merge with additional properties', function () {
       beforeEach(function () {
-          result = merge(testObj, { defaultProp3: addProp4 });
-        }
-      )
-      ;
+        result = merge(testObj, { defaultProp3: addProp4 });
+      }
+      );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
-      })
-      ;
+      });
       it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
           .equal({
@@ -230,14 +225,12 @@ describe(__filename, function () {
 
     describe('merge nested obj with additional property', function () {
       beforeEach(function () {
-          result = merge(testObj, { defaultProp1: { addProp4: addProp4 } });
-        }
+        result = merge(testObj, { defaultProp1: { addProp4: addProp4 } });
+      }
       );
       it('Mutates source obj', function () {
         expectMutateOriginalObj(testObj);
-      })
-      ;
-
+      });
       it('Replaces existing prop with the additional property', function () {
         expect(testObj).to.deep
           .equal({
@@ -263,21 +256,21 @@ describe(__filename, function () {
 
     it('sets addProp4 correctly', function () {
       expect(result).to.deep.equal({
-          defaultProp1: { nestedProp1: nestedProp1 },
-          defaultProp2: defaultProp2,
-          defaultProp3: defaultProp3,
-          addProp4: addProp4
-        }
+        defaultProp1: { nestedProp1: nestedProp1 },
+        defaultProp2: defaultProp2,
+        defaultProp3: defaultProp3,
+        addProp4: addProp4
+      }
       );
     });
     it('only sets addProp4 once', function () {
-      result = defaults(testObj, { addProp4: "test" });
+      result = defaults(testObj, { addProp4: 'test' });
       expect(result).to.deep.equal({
-          defaultProp1: { nestedProp1: nestedProp1 },
-          defaultProp2: defaultProp2,
-          defaultProp3: defaultProp3,
-          addProp4: addProp4
-        }
+        defaultProp1: { nestedProp1: nestedProp1 },
+        defaultProp2: defaultProp2,
+        defaultProp3: defaultProp3,
+        addProp4: addProp4
+      }
       );
     });
   }); // defaults
@@ -296,22 +289,21 @@ describe(__filename, function () {
 
     it('sets addProp4 correctly', function () {
       expect(result).to.deep.equal({
-          defaultProp1: { nestedProp1: nestedProp1, addProp4: addProp4 },
-          defaultProp2: defaultProp2,
-          defaultProp3: defaultProp3
-        }
+        defaultProp1: { nestedProp1: nestedProp1, addProp4: addProp4 },
+        defaultProp2: defaultProp2,
+        defaultProp3: defaultProp3
+      }
       );
     });
     it('only sets addProp4 once', function () {
-      result = defaultsDeep(testObj, { defaultProp1: { addProp4: "test" } });
+      result = defaultsDeep(testObj, { defaultProp1: { addProp4: 'test' } });
       expect(result).to.deep.equal({
-          defaultProp1: { nestedProp1: nestedProp1, addProp4: addProp4 },
-          defaultProp2: defaultProp2,
-          defaultProp3: defaultProp3
-        }
+        defaultProp1: { nestedProp1: nestedProp1, addProp4: addProp4 },
+        defaultProp2: defaultProp2,
+        defaultProp3: defaultProp3
+      }
       );
     });
   }); // defaultsDeep
-
-})
-; // file
+});
+// file

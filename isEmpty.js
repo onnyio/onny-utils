@@ -4,4 +4,4 @@
 
 var isEmpty = require('lodash/isEmpty');
 
-module.exports = function (value) { return isEmpty(value); }
+module.exports = function (value) { return isEmpty(value); };

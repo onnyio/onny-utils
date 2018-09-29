@@ -10,4 +10,4 @@ var size = require('lodash/size');
  * @param {Array|Object|string} array
  * @return {number}
  */
-module.exports = function (array) { return size(array) };
+module.exports = function (array) { return size(array); };

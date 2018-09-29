@@ -4,4 +4,4 @@
 
 var eq = require('lodash/eq');
 
-module.exports = function (value, other) { return eq(value, other);}
+module.exports = function (value, other) { return eq(value, other); };

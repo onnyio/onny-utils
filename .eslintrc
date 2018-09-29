@@ -12,6 +12,7 @@
   "rules": {
     "no-underscore-dangle": 0,
     // not available in ES5
+    "prefer-rest-params": 0,
     "prefer-arrow-callback": 0,
     "no-var": 0,
     "object-shorthand": 0,
