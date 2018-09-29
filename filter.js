@@ -4,4 +4,4 @@
 
 var filter = require('lodash/filter');
 
-module.exports = function (collection, predicate) { return filter(collection, predicate); }
+module.exports = function (collection, predicate) { return filter(collection, predicate); };

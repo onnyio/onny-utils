@@ -30,11 +30,11 @@ var alt1 = 'alt1';
 
 function expectOriginalArray(testArray) {
   expect(testArray).to.deep.equal([test1, test2, test3]);
-};
+}
 
 function expectMutateOriginalArray(testArray) {
   expect(testArray).to.not.deep.equal([test1, test2, test3]);
-};
+}
 
 describe(__filename, function () {
   var result;
@@ -87,7 +87,7 @@ describe(__filename, function () {
     });
 
     testIndex = 1;
-    describe('findIndex from index ' + testIndex, function () {
+    describe(`findIndex from index ${testIndex}`, function () {
       beforeEach(function () {
         testIndex = 1;
         result = findIndex(testArray, function (item) { return item === test2; }, testIndex);
@@ -98,7 +98,7 @@ describe(__filename, function () {
       it('Returns the correct index', function () {
         expect(result).to.equal(1);
       });
-      it('Does not return items before index ' + testIndex, function () {
+      it(`Does not return items before index ${testIndex}`, function () {
         result = findIndex(testArray, function (item) { return item === test1; }, testIndex);
         expect(result).to.equal(-1);
       });
@@ -168,12 +168,11 @@ describe(__filename, function () {
   /////////////////////////
   describe('intersectionWith', function () {
     it('returns array of unique only', function () {
-      var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
-      var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+      var objects = [{ x: 1, y: 2 }, { x: 2, y: 1 }];
+      var others = [{ x: 1, y: 1 }, { x: 1, y: 2 }];
 
       result = intersectionWith(objects, others, onnyUtils.isEqual);
-      expect(result).to.deep.equal([{ 'x': 1, 'y': 2 }]);
+      expect(result).to.deep.equal([{ x: 1, y: 2 }]);
     });
   }); // intersectionWith
-
 }); // file

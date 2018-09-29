@@ -4,4 +4,4 @@
 
 var isEqual = require('lodash/isEqual');
 
-module.exports = function (value, other) { return isEqual(value, other);}
+module.exports = function (value, other) { return isEqual(value, other); };

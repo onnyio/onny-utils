@@ -4,4 +4,4 @@
 
 var cloneDeep = require('lodash/cloneDeep');
 
-module.exports = function (value) { return cloneDeep(value);}
+module.exports = function (value) { return cloneDeep(value); };

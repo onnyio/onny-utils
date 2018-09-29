@@ -6,4 +6,4 @@ var map = require('lodash/map');
 
 module.exports = function (collection, interatee) {
   return map(collection, interatee);
-}
+};

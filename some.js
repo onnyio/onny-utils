@@ -4,4 +4,4 @@
 
 var some = require('lodash/some');
 
-module.exports = function (collection, predicate) { return some(collection, predicate);};
+module.exports = function (collection, predicate) { return some(collection, predicate); };
