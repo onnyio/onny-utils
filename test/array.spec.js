@@ -20,6 +20,7 @@ var pullAt = onnyUtils.pullAt;
 var pull = onnyUtils.pull;
 var differenceWith = onnyUtils.differenceWith;
 var uniq = onnyUtils.uniq;
+var uniqBy = onnyUtils.uniqBy;
 var intersectionWith = onnyUtils.intersectionWith;
 
 
@@ -87,7 +88,7 @@ describe(__filename, function () {
     });
 
     testIndex = 1;
-    describe(`findIndex from index ${testIndex}`, function () {
+    describe(`findIndex from index${testIndex}`, function () {
       beforeEach(function () {
         testIndex = 1;
         result = findIndex(testArray, function (item) { return item === test2; }, testIndex);
@@ -98,7 +99,7 @@ describe(__filename, function () {
       it('Returns the correct index', function () {
         expect(result).to.equal(1);
       });
-      it(`Does not return items before index ${testIndex}`, function () {
+      it(`Does not return items before index${testIndex}`, function () {
         result = findIndex(testArray, function (item) { return item === test1; }, testIndex);
         expect(result).to.equal(-1);
       });
@@ -162,6 +163,15 @@ describe(__filename, function () {
       expect(result).to.deep.equal([2, 1]);
     });
   }); // uniq
+
+  // uniqBy
+  /////////////////////////
+  describe('uniqBy', function () {
+    it('returns array of unique only using the iteratee', function () {
+      result = uniqBy([2.1, 1.2, 2.3], Math.floor);
+      expect(result).to.deep.equal([2.1, 1.2]);
+    });
+  }); // uniqBy
 
 
   // intersectionWith

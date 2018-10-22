@@ -39,6 +39,7 @@ var reverse = require('./reverse');
 var findLastIndex = require('./findLastIndex');
 var intersectionWith = require('./intersectionWith');
 var uniq = require('./uniq');
+var uniqBy = require('./uniqBy');
 var size = require('./size');
 var sampleSize = require('./sampleSize');
 
@@ -456,5 +457,6 @@ module.exports = {
   findLastIndex: findLastIndex,
   intersectionWith: intersectionWith,
   uniq: uniq,
+  uniqBy: uniqBy,
   size: size
 };
