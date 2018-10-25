@@ -29,6 +29,7 @@ var defaultProp2 = 'defaultProp2';
 var defaultProp3 = 'defaultProp3';
 var nestedProp1 = 'nestedProp1';
 var addProp4 = 'addProp4';
+var addProp5 = 'addProp5';
 
 function expectOriginalObj(testObj) {
   expect(testObj).to.deep.equal({
@@ -205,6 +206,27 @@ describe(__filename, function () {
           });
       });
     }); // merge Add additional properties
+
+    describe('Add multiple additional properties', function () {
+      beforeEach(function () {
+        result = merge(testObj, { addProp4: addProp4 }, {addProp5: addProp5});
+      }
+      );
+      it('Mutates source obj', function () {
+        expectMutateOriginalObj(testObj);
+      });
+      it('Adds the additional properties', function () {
+        expect(testObj).to.deep
+          .equal({
+            defaultProp1: { nestedProp1: nestedProp1 },
+            defaultProp2: defaultProp2,
+            defaultProp3: defaultProp3,
+            addProp4: addProp4,
+            addProp5: addProp5
+          });
+      });
+    }); // merge Add additional properties
+
     describe('Merge with additional properties', function () {
       beforeEach(function () {
         result = merge(testObj, { defaultProp3: addProp4 });
