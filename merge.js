@@ -5,12 +5,12 @@
 var merge = require('lodash/merge');
 
 module.exports = function (destObj) {
-  var _len3;
-  var _key3;
+  var _len;
+  var _key;
   var sources;
-  for (_len3 = arguments.length, sources = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1;
-    _key3 < _len3; _key3 += 3) {
-    sources[_key3 - 1] = arguments[_key3];
+  for (_len = arguments.length, sources = Array(_len > 1 ? _len - 1 : 0), _key = 1;
+       _key < _len; _key += 1) {
+    sources[_key - 1] = arguments[_key];
   }
 
   return merge.apply(merge, [destObj].concat(sources));
