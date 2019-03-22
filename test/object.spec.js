@@ -209,7 +209,7 @@ describe(__filename, function () {
 
     describe('Add multiple additional properties', function () {
       beforeEach(function () {
-        result = merge(testObj, { addProp4: addProp4 }, {addProp5: addProp5});
+        result = merge(testObj, { addProp4: addProp4 }, { addProp5: addProp5 });
       }
       );
       it('Mutates source obj', function () {

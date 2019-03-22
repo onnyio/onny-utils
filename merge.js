@@ -9,7 +9,7 @@ module.exports = function (destObj) {
   var _key;
   var sources;
   for (_len = arguments.length, sources = Array(_len > 1 ? _len - 1 : 0), _key = 1;
-       _key < _len; _key += 1) {
+    _key < _len; _key += 1) {
     sources[_key - 1] = arguments[_key];
   }
 
