@@ -1,6 +1,6 @@
 {
   "name": "onny-utils",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Utils for Onny.io",
   "main": "./index.js",
   "scripts": {
