@@ -2,6 +2,8 @@
 
 # OnnyUtils
 test
+.eslintrc
+.gitignore
 
 .idea/**
 
