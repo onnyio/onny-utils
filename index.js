@@ -32,6 +32,7 @@ var assign = require('./assign');
 var merge = require('./merge');
 var objToArray = require('./objToArray');
 var debounce = require('./debounce');
+var throttle = require('./throttle');
 var eq = require('./eq');
 var forEach = require('./forEach');
 var forEachRight = require('./forEachRight');
@@ -278,6 +279,22 @@ module.exports = {
    * @return {function} - debounced function
    */
   debounce: debounce,
+
+
+  /**
+   * Creates a throttled function that only invokes func at most once per every wait milliseconds. The throttled function comes with a cancel method to cancel delayed func invocations and a flush method to immediately invoke them. Provide options to indicate whether func should be invoked on the leading and/or trailing edge of the wait timeout. The func is invoked with the last arguments provided to the throttled function.
+   *
+   * Subsequent calls to the throttled function return the result of the last func invocation.
+   *
+   * @see related - [ _.throttle]{@link https://lodash.com/docs/4.17.4#throttle}
+   *
+   * @static
+   * @param {function} func - function to throttle
+   * @param {int} [wait=200] - delay in milliseconds
+   * @param {object} [options] - The options object
+   * @return {function} - throttled function
+   */
+  throttle: throttle,
 
 
   ///////////////////////////
