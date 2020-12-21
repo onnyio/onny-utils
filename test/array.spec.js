@@ -11,7 +11,7 @@
  */
 
 var chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
-var onnyUtils = require('../index');
+var onnyUtils = require('../src');
 
 var expect = chai.expect;
 var without = onnyUtils.without;

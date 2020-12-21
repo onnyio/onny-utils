@@ -12,7 +12,7 @@
 
 
 var chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
-var objectUtils = require('../index');
+var objectUtils = require('../src');
 
 var expect = chai.expect;
 
