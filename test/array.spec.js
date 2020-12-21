@@ -1,5 +1,5 @@
-/**
- * @Copyright (C) 2015-2017 Onny LLC - All Rights Reserved
+/*
+ * @Copyright © 2016-2020 Onny LLC - All Rights Reserved
  *
  * This file is part of Onny and is the sole property of its owner.
  * Unauthorized use of this file, via any medium or form, whole or in part,
@@ -7,27 +7,27 @@
  *
  * This file is proprietary and confidential
  *
- * Last Modified: 2017.4.1
+ * Last Modified: 2020.12.21
  */
 
-var chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
-var onnyUtils = require('../src');
+const chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
+const onnyUtils = require('../index');
 
-var expect = chai.expect;
-var without = onnyUtils.without;
-var findIndex = onnyUtils.findIndex;
-var pullAt = onnyUtils.pullAt;
-var pull = onnyUtils.pull;
-var differenceWith = onnyUtils.differenceWith;
-var uniq = onnyUtils.uniq;
-var uniqBy = onnyUtils.uniqBy;
-var intersectionWith = onnyUtils.intersectionWith;
+const expect = chai.expect;
+const without = onnyUtils.without;
+const findIndex = onnyUtils.findIndex;
+const pullAt = onnyUtils.pullAt;
+const pull = onnyUtils.pull;
+const differenceWith = onnyUtils.differenceWith;
+const uniq = onnyUtils.uniq;
+const uniqBy = onnyUtils.uniqBy;
+const intersectionWith = onnyUtils.intersectionWith;
 
 
-var test1 = 'test1';
-var test2 = 'test2';
-var test3 = 'test3';
-var alt1 = 'alt1';
+const test1 = 'test1';
+const test2 = 'test2';
+const test3 = 'test3';
+const alt1 = 'alt1';
 
 function expectOriginalArray(testArray) {
   expect(testArray).to.deep.equal([test1, test2, test3]);
@@ -37,11 +37,11 @@ function expectMutateOriginalArray(testArray) {
   expect(testArray).to.not.deep.equal([test1, test2, test3]);
 }
 
-describe(__filename, function () {
-  var result;
-  var testIndex;
-  var testArray;
-  beforeEach(function () {
+describe(__filename, () => {
+  let result;
+  let testIndex;
+  let testArray;
+  beforeEach(() => {
     result = null;
     testIndex = null;
     testArray = [];
@@ -57,17 +57,17 @@ describe(__filename, function () {
 
   // without
   /////////////////////////
-  describe('without', function () {
-    beforeEach(function () {
+  describe('without', () => {
+    beforeEach(() => {
       result = without(testArray, test2);
     });
-    it('Does NOT mutate source', function () {
+    it('Does NOT mutate source', () => {
       expectOriginalArray(testArray);
     });
-    it('Returns array excluding values', function () {
+    it('Returns array excluding values', () => {
       expect(result).to.deep.equal([test1, test3]);
     });
-    it('Fails gracefully if value is not found', function () {
+    it('Fails gracefully if value is not found', () => {
       result = without(testArray, alt1);
       expectOriginalArray(testArray);
       expect(result).to.deep.equal(testArray);
@@ -76,31 +76,31 @@ describe(__filename, function () {
 
   // findIndex
   /////////////////////////
-  describe('findIndex', function () {
-    beforeEach(function () {
-      result = findIndex(testArray, function (item) { return item === test2; });
+  describe('findIndex', () => {
+    beforeEach(() => {
+      result = findIndex(testArray, (item) => item === test2);
     });
-    it('Does NOT mutate source', function () {
+    it('Does NOT mutate source', () => {
       expectOriginalArray(testArray);
     });
-    it('Returns the correct index', function () {
+    it('Returns the correct index', () => {
       expect(result).to.equal(1);
     });
 
     testIndex = 1;
-    describe(`findIndex from index${testIndex}`, function () {
-      beforeEach(function () {
+    describe(`findIndex from index${testIndex}`, () => {
+      beforeEach(() => {
         testIndex = 1;
-        result = findIndex(testArray, function (item) { return item === test2; }, testIndex);
+        result = findIndex(testArray, (item) => item === test2, testIndex);
       });
-      it('Does NOT mutate source', function () {
+      it('Does NOT mutate source', () => {
         expectOriginalArray(testArray);
       });
-      it('Returns the correct index', function () {
+      it('Returns the correct index', () => {
         expect(result).to.equal(1);
       });
-      it(`Does not return items before index${testIndex}`, function () {
-        result = findIndex(testArray, function (item) { return item === test1; }, testIndex);
+      it(`Does not return items before index${testIndex}`, () => {
+        result = findIndex(testArray, (item) => item === test1, testIndex);
         expect(result).to.equal(-1);
       });
     });
@@ -109,15 +109,15 @@ describe(__filename, function () {
   // pull
   /////////////////////////
   testIndex = 1;
-  describe('pull', function () {
-    beforeEach(function () {
+  describe('pull', () => {
+    beforeEach(() => {
       pull(testArray, test2);
     });
-    it('Mutates source', function () {
+    it('Mutates source', () => {
       expectMutateOriginalArray(testArray);
     });
 
-    it('Returns array excluding values', function () {
+    it('Returns array excluding values', () => {
       expect(testArray).to.deep.equal([test1, test3]);
     });
   }); // pull
@@ -125,15 +125,15 @@ describe(__filename, function () {
   // pullAt
   /////////////////////////
   testIndex = 1;
-  describe('pullAt', function () {
-    beforeEach(function () {
+  describe('pullAt', () => {
+    beforeEach(() => {
       pullAt(testArray, 1);
     });
-    it('Mutates source', function () {
+    it('Mutates source', () => {
       expectMutateOriginalArray(testArray);
     });
 
-    it('Returns array excluding values', function () {
+    it('Returns array excluding values', () => {
       expect(testArray).to.deep.equal([test1, test3]);
     });
   }); // pullAt
@@ -141,15 +141,15 @@ describe(__filename, function () {
   // differenceWith
   /////////////////////////
   testIndex = 1;
-  describe('differenceWith', function () {
-    beforeEach(function () {
+  describe('differenceWith', () => {
+    beforeEach(() => {
       result = differenceWith(testArray, [test2], onnyUtils.isEqual);
     });
-    it('Does NOT Mutate source', function () {
+    it('Does NOT Mutate source', () => {
       expectOriginalArray(testArray);
     });
 
-    it('Returns array excluding values', function () {
+    it('Returns array excluding values', () => {
       expect(result).to.deep.equal([test1, test3]);
     });
   }); // differenceWith
@@ -157,8 +157,8 @@ describe(__filename, function () {
 
   // uniq
   /////////////////////////
-  describe('uniq', function () {
-    it('returns array of unique only', function () {
+  describe('uniq', () => {
+    it('returns array of unique only', () => {
       result = uniq([2, 1, 2]);
       expect(result).to.deep.equal([2, 1]);
     });
@@ -166,8 +166,8 @@ describe(__filename, function () {
 
   // uniqBy
   /////////////////////////
-  describe('uniqBy', function () {
-    it('returns array of unique only using the iteratee', function () {
+  describe('uniqBy', () => {
+    it('returns array of unique only using the iteratee', () => {
       result = uniqBy([2.1, 1.2, 2.3], Math.floor);
       expect(result).to.deep.equal([2.1, 1.2]);
     });
@@ -176,10 +176,10 @@ describe(__filename, function () {
 
   // intersectionWith
   /////////////////////////
-  describe('intersectionWith', function () {
-    it('returns array of unique only', function () {
-      var objects = [{ x: 1, y: 2 }, { x: 2, y: 1 }];
-      var others = [{ x: 1, y: 1 }, { x: 1, y: 2 }];
+  describe('intersectionWith', () => {
+    it('returns array of unique only', () => {
+      const objects = [{ x: 1, y: 2 }, { x: 2, y: 1 }];
+      const others = [{ x: 1, y: 1 }, { x: 1, y: 2 }];
 
       result = intersectionWith(objects, others, onnyUtils.isEqual);
       expect(result).to.deep.equal([{ x: 1, y: 2 }]);

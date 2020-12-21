@@ -1,17 +1,14 @@
-/**
- * Copyright (C) 2015-2016 Onny LLC - All Rights Reserved
+/*
+ * @Copyright © 2016-2020 Onny LLC - All Rights Reserved
+ *
+ * This file is part of Onny and is the sole property of its owner.
+ * Unauthorized use of this file, via any medium or form, whole or in part,
+ * is strictly prohibited without the expressed written permission of Onny LLC and/or Isaac Marotte
+ *
+ * This file is proprietary and confidential
+ *
+ * Last Modified: 2020.12.21
  */
 
-var assign = require('lodash/assign');
 
-module.exports = function (destObj) {
-  var _len2;
-  var _key2;
-  var sources;
-  for (_len2 = arguments.length, sources = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1;
-    _key2 < _len2; _key2 += 1) {
-    sources[_key2 - 1] = arguments[_key2];
-  }
-
-  return assign.apply(assign, [destObj].concat(sources));
-};
+export default Object.assign;

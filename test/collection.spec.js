@@ -1,5 +1,5 @@
-/**
- * @Copyright (C) 2015-2017 Onny LLC - All Rights Reserved
+/*
+ * @Copyright © 2016-2020 Onny LLC - All Rights Reserved
  *
  * This file is part of Onny and is the sole property of its owner.
  * Unauthorized use of this file, via any medium or form, whole or in part,
@@ -7,21 +7,21 @@
  *
  * This file is proprietary and confidential
  *
- * Last Modified: 2017.4.1
+ * Last Modified: 2020.12.21
  */
 
-var chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
-var onnyUtils = require('../src');
+const chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
+const onnyUtils = require('../index');
 
-var expect = chai.expect;
-var size = onnyUtils.size;
-var sampleSize = onnyUtils.sampleSize;
-var uniq = onnyUtils.uniq;
+const expect = chai.expect;
+const size = onnyUtils.size;
+const sampleSize = onnyUtils.sampleSize;
+const uniq = onnyUtils.uniq;
 
 
-var test1 = 'test1';
-var test2 = 'test2';
-var test3 = 'test3';
+const test1 = 'test1';
+const test2 = 'test2';
+const test3 = 'test3';
 
 function expectOriginalArray(testArray) {
   expect(testArray).to.deep.equal([test1, test2, test3]);
@@ -31,10 +31,10 @@ function expectOriginalArray(testArray) {
 //   expect(testArray).to.not.deep.equal([test1, test2, test3]);
 // }
 
-describe(__filename, function () {
-  var result;
-  var testArray;
-  beforeEach(function () {
+describe(__filename, () => {
+  let result;
+  let testArray;
+  beforeEach(() => {
     result = null;
     testArray = [];
     // verify array was cleared
@@ -49,12 +49,12 @@ describe(__filename, function () {
 
   // size
   /////////////////////////
-  describe('size', function () {
-    it('size of array', function () {
+  describe('size', () => {
+    it('size of array', () => {
       result = size([1, 2, 3, 4]);
       expect(result).to.equal(4);
     });
-    it('size of object', function () {
+    it('size of object', () => {
       result = size({
         one: 1,
         two: 2,
@@ -63,7 +63,7 @@ describe(__filename, function () {
       });
       expect(result).to.equal(4);
     });
-    it('size of string', function () {
+    it('size of string', () => {
       result = size('hello world');
       expect(result).to.equal(11);
     });
@@ -72,10 +72,10 @@ describe(__filename, function () {
 
   // sampleSize
   ////////////////////////////
-  describe('sampleSize', function () {
-    it('array', function () {
-      var n = 9;
-      var i;
+  describe('sampleSize', () => {
+    it('array', () => {
+      const n = 9;
+      let i;
       // run through it a bunch to ensure it actually gives unique results
       for (i = 0; i < 100; i += 1) {
         result = sampleSize([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], n);

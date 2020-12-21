@@ -1,48 +1,48 @@
 /*
- * @Copyright (C) 2015- 2017 Onny LLC - All Rights Reserved
+ * @Copyright © 2016-2020 Onny LLC - All Rights Reserved
  * @license
- * This file is part of onny-utils and is the sole property of its owner.
+ * This file is part of Onny and is the sole property of its owner.
  * Unauthorized use of this file, via any medium or form, whole or in part,
  * is strictly prohibited without the expressed written permission of Onny LLC and/or Isaac Marotte
  *
  * This file is proprietary and confidential
  *
- * Last Modified: 2017.4.10
+ * Last Modified: 2020.12.21
  */
 
-var without = require('./without');
-var remove = require('./remove');
-var findIndex = require('./findIndex');
-var pull = require('./pull');
-var pullAt = require('./pullAt');
-var differenceWith = require('./differenceWith');
-var map = require('./map');
-var find = require('./find');
-var filter = require('./filter');
-var isEmpty = require('./isEmpty');
-var some = require('./some');
-var values = require('./values');
-var clone = require('./clone');
-var cloneDeep = require('./cloneDeep');
-var defaults = require('./defaults');
-var defaultsDeep = require('./defaultsDeep');
-var isEqual = require('./isEqual');
-var omit = require('./omit');
-var assign = require('./assign');
-var merge = require('./merge');
-var objToArray = require('./objToArray');
-var debounce = require('./debounce');
-var throttle = require('./throttle');
-var eq = require('./eq');
-var forEach = require('./forEach');
-var forEachRight = require('./forEachRight');
-var reverse = require('./reverse');
-var findLastIndex = require('./findLastIndex');
-var intersectionWith = require('./intersectionWith');
-var uniq = require('./uniq');
-var uniqBy = require('./uniqBy');
-var size = require('./size');
-var sampleSize = require('./sampleSize');
+import assign from './src/assign';
+import without from './src/without';
+import remove from './src/remove';
+import findIndex from './src/findIndex';
+import pull from './src/pull';
+import pullAt from './src/pullAt';
+import differenceWith from './src/differenceWith';
+import map from './src/map';
+import find from './src/find';
+import filter from './src/filter';
+import isEmpty from './src/isEmpty';
+import some from './src/some';
+import values from './src/values';
+import clone from './src/clone';
+import cloneDeep from './src/cloneDeep';
+import defaults from './src/defaults';
+import defaultsDeep from './src/defaultsDeep';
+import isEqual from './src/isEqual';
+import omit from './src/omit';
+import merge from './src/merge';
+import objToArray from './src/objToArray';
+import debounce from './src/debounce';
+import throttle from './src/throttle';
+import eq from './src/eq';
+import forEach from './src/forEach';
+import forEachRight from './src/forEachRight';
+import reverse from './src/reverse';
+import findLastIndex from './src/findLastIndex';
+import intersectionWith from './src/intersectionWith';
+import uniq from './src/uniq';
+import uniqBy from './src/uniqBy';
+import size from './src/size';
+import sampleSize from './src/sampleSize';
 
 
 /**
@@ -71,7 +71,7 @@ module.exports = {
    * @param {...*} [values] - Values to exclude
    * @return {Array} - new Array
    */
-  without: without,
+  without,
 
   /**
    * Removes all elements from array that predicate returns truthy for and returns an array of the removed elements.
@@ -88,7 +88,7 @@ module.exports = {
    * @param {function} predicate
    * @return {Array} - Returns the new array of removed elements.
    */
-  remove: remove,
+  remove,
 
 
   /**
@@ -102,7 +102,7 @@ module.exports = {
    * @param {number} [fromIndex=0]
    * @return {number} - index of the item, otherwise -1
    */
-  findIndex: findIndex,
+  findIndex,
 
 
   /**
@@ -125,7 +125,7 @@ module.exports = {
    * @return {Array} mutated array
    *
    */
-  pull: pull,
+  pull,
   /**
    * Removes elements from array corresponding to indexes and returns an array of removed elements.
    *
@@ -138,7 +138,7 @@ module.exports = {
    * @param {...number|...number[]} indexes - The indexes of elements to remove.
    * @return {*[]} - Returns the new array of removed elements.
    */
-  pullAt: pullAt,
+  pullAt,
 
   /**
    *
@@ -158,7 +158,7 @@ module.exports = {
    * @param {function} comparator - The comparator invoked per element.
    * @returns {[]} Returns the new array of filtered values.
    */
-  differenceWith: differenceWith,
+  differenceWith,
 
 
   ///////////////////////////
@@ -173,7 +173,7 @@ module.exports = {
    * @param {number} [n=1] - number of elements to sample
    * @return {Array} - Random elements
    */
-  sampleSize: sampleSize,
+  sampleSize,
 
 
   /**
@@ -186,7 +186,7 @@ module.exports = {
    * @param {function} interatee - function invoked per iteration
    * @return {*[]} - the new mapped array
    */
-  map: map,
+  map,
 
   /**
    * Iterates over elements of collection and invokes iteratee for each element The iteratee is invoked with three arguments: (value, index|key, collection). Iteratee functions may exit iteration early by explicitly returning false.
@@ -200,7 +200,7 @@ module.exports = {
    * @param {function} iteratee - function invoked per iteration
    * @return {*[]|object}
    */
-  forEach: forEach,
+  forEach,
 
   /**
    * Iterates over elements of collection, returning the first element predicate returns truthy for.
@@ -213,7 +213,7 @@ module.exports = {
    * @param {number} [fromIndex=0]
    * @return {*[]|object} Returns the matched element, else undefined.
    */
-  find: find,
+  find,
 
   /**
    * Iterates over elements of collection, returning an array of all elements predicate returns truthy for.
@@ -228,7 +228,7 @@ module.exports = {
    * @param {function} predicate  - function invoked per iteration
    * @return {*[]|object}
    */
-  filter: filter,
+  filter,
 
 
   /**
@@ -244,7 +244,7 @@ module.exports = {
    * @param {*} value -value to check
    * @return {boolean} - true if empty
    */
-  isEmpty: isEmpty,
+  isEmpty,
 
   /**
    * Checks if predicate returns truthy for any element of collection. Iteration is stopped once predicate returns truthy.
@@ -257,7 +257,7 @@ module.exports = {
    * @param predicate
    * @return {boolean} Returns true if any element passes the predicate check, else false.
    */
-  some: some,
+  some,
 
 
   ///////////////////////////
@@ -278,7 +278,7 @@ module.exports = {
    * @param {object} [options] - The options object
    * @return {function} - debounced function
    */
-  debounce: debounce,
+  debounce,
 
 
   /**
@@ -294,7 +294,7 @@ module.exports = {
    * @param {object} [options] - The options object
    * @return {function} - throttled function
    */
-  throttle: throttle,
+  throttle,
 
 
   ///////////////////////////
@@ -312,7 +312,7 @@ module.exports = {
    * @param {*} other - value to compare
    * @returns {boolean} - if the two values match
    */
-  eq: eq,
+  eq,
 
   /**
    * Performs a deep comparison between two values to determine if they are equivalent.
@@ -326,7 +326,7 @@ module.exports = {
    * @param {*} other - value to compare
    * @returns {boolean} - if the two values match
    */
-  isEqual: isEqual,
+  isEqual,
 
   /**
    * This method is like {@link OnnyUtils.clone} except that it recursively clones value.
@@ -337,7 +337,7 @@ module.exports = {
    * @param {*} value
    * @return {*} cloned value
    */
-  cloneDeep: cloneDeep,
+  cloneDeep,
 
   /**
    * Creates a shallow clone of value.
@@ -350,7 +350,7 @@ module.exports = {
    * @param {*} value
    * @return {*} cloned value
    */
-  clone: clone,
+  clone,
 
   ///////////////////////////
   // Object Helpers
@@ -364,7 +364,7 @@ module.exports = {
    * @param {function} funcMapToArray - returns each object element formatted to push onto array
    * @return {Array} - The new Array
    */
-  objToArray: objToArray,
+  objToArray,
 
 
   /**
@@ -382,7 +382,7 @@ module.exports = {
    * @param {...string|string[]} path - Paths to omit
    * @returns {Object} - The New object
    */
-  omit: omit,
+  omit,
 
   /**
    * Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
@@ -397,7 +397,7 @@ module.exports = {
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
    */
-  assign: assign,
+  assign,
 
   /**
    * This method is like {@link OnnyUtils.assign} except that it recursively merges own and inherited enumerable string keyed properties of source objects into the destination object. Source properties that resolve to undefined are skipped if a destination value exists. Array and plain object properties are merged recursively. Other objects and value types are overridden by assignment. Source objects are applied from left to right.
@@ -413,7 +413,7 @@ module.exports = {
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
    */
-  merge: merge,
+  merge,
 
   /**
    * Assigns own and inherited enumerable string keyed properties of source objects to the destination object for all destination properties that resolve to undefined. Source objects are applied from left to right. Once a property is set, additional values of the same property are ignored.
@@ -428,7 +428,7 @@ module.exports = {
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
    */
-  defaults: defaults,
+  defaults,
 
   /**
    * This method is like {@link OnnyUtils.defaults} except that it recursively assigns default properties.
@@ -442,7 +442,7 @@ module.exports = {
    * @param {...Object} sources - Source objects
    * @return {object} returns mutated object
    */
-  defaultsDeep: defaultsDeep,
+  defaultsDeep,
 
   /**
    * Creates an array of the own enumerable string keyed property values of `object`.
@@ -467,13 +467,13 @@ module.exports = {
    * _.values('hi');
    * // => ['h', 'i']
    */
-  values: values,
+  values,
 
-  forEachRight: forEachRight,
-  reverse: reverse,
-  findLastIndex: findLastIndex,
-  intersectionWith: intersectionWith,
-  uniq: uniq,
-  uniqBy: uniqBy,
-  size: size
+  forEachRight,
+  reverse,
+  findLastIndex,
+  intersectionWith,
+  uniq,
+  uniqBy,
+  size
 };
