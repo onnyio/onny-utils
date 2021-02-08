@@ -12,7 +12,7 @@
 
 
 const chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
-const objectUtils = require('../index');
+const objectUtils = require('../src/index');
 
 const expect = chai.expect;
 

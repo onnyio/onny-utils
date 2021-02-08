@@ -1,6 +1,6 @@
 /*
- * @Copyright © 2016-2020 Onny LLC - All Rights Reserved
- * @license
+ * @Copyright © 2016-2021 Onny LLC - All Rights Reserved
+ *
  * This file is part of Onny and is the sole property of its owner.
  * Unauthorized use of this file, via any medium or form, whole or in part,
  * is strictly prohibited without the expressed written permission of Onny LLC and/or Isaac Marotte
@@ -10,39 +10,39 @@
  * Last Modified: 2020.12.21
  */
 
-import assign from './src/assign';
-import without from './src/without';
-import remove from './src/remove';
-import findIndex from './src/findIndex';
-import pull from './src/pull';
-import pullAt from './src/pullAt';
-import differenceWith from './src/differenceWith';
-import map from './src/map';
-import find from './src/find';
-import filter from './src/filter';
-import isEmpty from './src/isEmpty';
-import some from './src/some';
-import values from './src/values';
-import clone from './src/clone';
-import cloneDeep from './src/cloneDeep';
-import defaults from './src/defaults';
-import defaultsDeep from './src/defaultsDeep';
-import isEqual from './src/isEqual';
-import omit from './src/omit';
-import merge from './src/merge';
-import objToArray from './src/objToArray';
-import debounce from './src/debounce';
-import throttle from './src/throttle';
-import eq from './src/eq';
-import forEach from './src/forEach';
-import forEachRight from './src/forEachRight';
-import reverse from './src/reverse';
-import findLastIndex from './src/findLastIndex';
-import intersectionWith from './src/intersectionWith';
-import uniq from './src/uniq';
-import uniqBy from './src/uniqBy';
-import size from './src/size';
-import sampleSize from './src/sampleSize';
+import assign from './assign';
+import without from './without';
+import remove from './remove';
+import findIndex from './findIndex';
+import pull from './pull';
+import pullAt from './pullAt';
+import differenceWith from './differenceWith';
+import map from './map';
+import find from './find';
+import filter from './filter';
+import isEmpty from './isEmpty';
+import some from './some';
+import values from './values';
+import clone from './clone';
+import cloneDeep from './cloneDeep';
+import defaults from './defaults';
+import defaultsDeep from './defaultsDeep';
+import isEqual from './isEqual';
+import omit from './omit';
+import merge from './merge';
+import objToArray from './objToArray';
+import debounce from './debounce';
+import throttle from './throttle';
+import eq from './eq';
+import forEach from './forEach';
+import forEachRight from './forEachRight';
+import reverse from './reverse';
+import findLastIndex from './findLastIndex';
+import intersectionWith from './intersectionWith';
+import uniq from './uniq';
+import uniqBy from './uniqBy';
+import size from './size';
+import sampleSize from './sampleSize';
 
 
 /**

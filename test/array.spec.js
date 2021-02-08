@@ -11,7 +11,7 @@
  */
 
 const chai = require('chai'); // eslint-disable-line import/no-extraneous-dependencies
-const onnyUtils = require('../index');
+const onnyUtils = require('../src/index');
 
 const expect = chai.expect;
 const without = onnyUtils.without;
