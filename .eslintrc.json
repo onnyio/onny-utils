@@ -2,7 +2,7 @@
   "extends": [
     "onny"
   ],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "env": {
     "mocha": true
   },
